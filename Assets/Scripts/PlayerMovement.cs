@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isRecharging = false;
     private float sprintAmount;
     public float sprintMax;
-
+    private bool isMoving = false;
     public CinemachineVirtualCamera playerCam;
     public Transform crouchPoint;
     public Transform standPoint;
@@ -70,19 +70,20 @@ public class PlayerMovement : MonoBehaviour
         }
         Input();
         SpeedControl();
-        if (isRecharging && !isSprinting)
-        {
-            sprintAmount += 1f;
-            sprintAmount = Mathf.Clamp(sprintAmount, 0f, sprintMax);
-            if (sprintAmount/sprintMax * 100f > 75f)
-            {
-                canSprint = true;
-            }
-            if (sprintAmount >= sprintMax)
-            {
-                isRecharging = false;
-            }
-        }
+        RechargingSprint();
+        // if (isRecharging && !isSprinting)
+        // {
+        //     sprintAmount += 1f;
+        //     sprintAmount = Mathf.Clamp(sprintAmount, 0f, sprintMax);
+        //     if (sprintAmount/sprintMax * 100f > 75f)
+        //     {
+        //         canSprint = true;
+        //     }
+        //     if (sprintAmount >= sprintMax)
+        //     {
+        //         isRecharging = false;
+        //     }
+        // }
         Debug.Log(sprintAmount);
 
 
@@ -96,33 +97,17 @@ public class PlayerMovement : MonoBehaviour
     private void Input()
     {
         axis = movementInput.ReadValue<Vector2>();
-        
-
-        if (sprintInput.IsInProgress() && canSprint)
+        if (movementInput.ReadValue<Vector2>() != Vector2.zero)
         {
-            
-            if (movementInput.ReadValue<Vector2>().magnitude > 0)
-            {
-                isSprinting = true;
-                isCrouching = false;
-                sprintAmount -= 1f;
-            }
-            isRecharging = false;
-            speed = sprintSpeed;
-            drag = sprintDrag;
-            sprintAmount = Mathf.Clamp(sprintAmount, 0f, sprintMax);
-            
+            isMoving = true;
         }else
         {
-            isSprinting = false;
-            if (sprintAmount <= sprintMax)
-            {
-                Invoke(nameof(StartRecharge), timeUntilRecharge);
-            }
-            speed = walkSpeed;
-            drag = walkDrag;
-
+            isMoving = false;
         }
+        
+
+        Sprint();
+
         if (crouchInput.IsInProgress())
         {
             Crouch();
@@ -130,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StandUp();
         }
-        if (movementInput.ReadValue<Vector2>().magnitude == 0)
+        if (movementInput.ReadValue<Vector2>() != Vector2.zero)
         {
             drag = 5f;
         }
@@ -174,8 +159,110 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void RechargingSprint()
+    {
+        if (isRecharging && !isSprinting)
+        {
+            sprintAmount += 1f;
+            sprintAmount = Mathf.Clamp(sprintAmount, 0f, sprintMax);
+            if (sprintAmount/sprintMax * 100f > 75f)
+            {
+                canSprint = true;
+            }
+            if (sprintAmount >= sprintMax)
+            {
+                isRecharging = false;
+            }
+        }
+    }
+    private void Sprint()
+    {
+        if (sprintAmount > 0)
+        {
+            
+            canSprint = true;
+        }else
+        {
+            canSprint = false;
+        }
+
+        if (sprintInput.IsInProgress() && canSprint)
+        {
+            if (isMoving)
+            {
+                isRecharging = false;
+                isSprinting = true;
+                isCrouching = false;
+            }else
+            {
+
+                isSprinting = false;
+            }
+        }else if (sprintInput.IsInProgress() && !canSprint)
+        {
+            isSprinting = false;
+        }
+
+        if (isSprinting)
+        {
+            isRecharging = false;
+            sprintAmount -= 1f;
+            sprintAmount = Mathf.Clamp(sprintAmount, 0f, sprintMax);
+            speed = sprintSpeed;
+
+        }else
+        {
+            speed = walkSpeed;
+            if (sprintAmount < sprintMax)
+            {
+                Debug.Log("SprintDepleted");
+                if (!isRecharging)
+                {
+                    Debug.Log("Invoking");
+                    Invoke(nameof(StartRecharge), timeUntilRecharge);
+                }
+            }
+        }
+        //     if (canSprint)
+        //     {
+        //         if (movementInput.ReadValue<Vector2>().magnitude > 0)
+        //         {
+        //             isSprinting = true;
+        //             isCrouching = false;
+        //             sprintAmount -= 1f;
+        //         }
+        //         isRecharging = false;
+        //         speed = sprintSpeed;
+        //         drag = sprintDrag;
+        //         sprintAmount = Mathf.Clamp(sprintAmount, 0f, sprintMax);
+        //     }else
+        //     {
+        //         isSprinting = false;
+        //         if (sprintAmount <= sprintMax)
+        //         {
+        //             Invoke(nameof(StartRecharge), timeUntilRecharge);
+        //         }
+        //         speed = walkSpeed;
+        //         drag = walkDrag;
+        //     }
+            
+            
+        // }else
+        // {
+        //     isSprinting = false;
+        //     if (sprintAmount <= sprintMax)
+        //     {
+        //         Debug.Log("sprint depleted");
+        //         Invoke(nameof(StartRecharge), timeUntilRecharge);
+        //     }
+        //     speed = walkSpeed;
+        //     drag = walkDrag;
+
+        // }
+    }
     private void StartRecharge()
     {
+        Debug.Log("Is Recharging");
         isRecharging = true;
     }
 
