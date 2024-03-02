@@ -12,7 +12,7 @@ public class LadderScript : MonoBehaviour
     private PlayerMovement playerMovement;
     private Rigidbody playerRb;
 
-    private bool isOnLadder = false;
+    public bool isOnLadder = false;
     public float ladderSpeed;
 
     public LayerMask groundMask;
@@ -27,24 +27,25 @@ public class LadderScript : MonoBehaviour
         playerRb = gameObject.GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerEnter(Collider collider)
-    {
-        if (collider.CompareTag("Ladder"))
-        {
-            playerMovement.enabled = false;
-            playerRb.useGravity = false;
-            isOnLadder = true;
-        }
-    }
-    private void OnTriggerExit(Collider collider)
-    {
-        if (collider.CompareTag("Ladder"))
-        {
-            playerMovement.enabled = true;
-            playerRb.useGravity = true;
-            isOnLadder = false;
-        }
-    }
+    // private void OnTriggerEnter(Collider collider)
+    // {
+    //     if (collider.CompareTag("Ladder"))
+    //     {
+    //         playerMovement.enabled = false;
+    //         playerRb.useGravity = false;
+    //         isOnLadder = true;
+    //     }
+    // }
+    // private void OnTriggerExit(Collider collider)
+    // {
+    //     if (collider.CompareTag("Ladder"))
+    //     {
+    //         Debug.Log("LeaveLadder");
+    //         playerMovement.enabled = true;
+    //         playerRb.useGravity = true;
+    //         isOnLadder = false;
+    //     }
+    // }
 
     private void Update()
     {
@@ -62,6 +63,7 @@ public class LadderScript : MonoBehaviour
                 playerRb.AddForce(Vector3.down * ladderSpeed, ForceMode.Force);
                 if (isOnGround)
                 {
+                    Debug.Log("Leave Ladder from being on ground");
                     isOnLadder = false;
                     playerMovement.enabled = true;
                 }

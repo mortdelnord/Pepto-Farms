@@ -133,7 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6898933}
   - component: {fileID: 6898934}
-  m_Layer: 0
+  - component: {fileID: 6898935}
+  - component: {fileID: 6898936}
+  m_Layer: 7
   m_Name: Ladder
   m_TagString: Ladder
   m_Icon: {fileID: 0}
@@ -154,6 +156,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2024722011}
+  - {fileID: 1625275990}
+  - {fileID: 1322204358}
+  - {fileID: 2116126235}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6898934
@@ -175,8 +180,48 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 13, z: 1}
-  m_Center: {x: 0, y: 0, z: -0.49}
+  m_Size: {x: 1, y: 3.31, z: 1}
+  m_Center: {x: 0, y: 6.08, z: -0.47}
+--- !u!114 &6898935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6898932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 197857afb861b4cae86b3025c4a688ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObject: {fileID: 146152737}
+  ladderGetOnSpeed: 1.82
+  ladderDis: 0
+  climbPoint: {fileID: 1625275990}
+  topPoint: {fileID: 1322204358}
+  leavePoint: {fileID: 2116126235}
+  closestPoint: {fileID: 0}
+--- !u!65 &6898936
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6898932}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 3.31, z: 1}
+  m_Center: {x: 0, y: -5.26, z: -0.47}
 --- !u!114 &67761421 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1026037661574405389, guid: bde0cfcc59f1e4ca3828c440c442e9bd,
@@ -230,10 +275,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInputs: {fileID: -944628639613478452, guid: 87995ebdb37ca48e7badc3ff577f3c52,
     type: 3}
+  isOnLadder: 0
   ladderSpeed: 10
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &146152744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146152737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e41964a3c2c342d291cf592b3930b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInputs: {fileID: -944628639613478452, guid: 87995ebdb37ca48e7badc3ff577f3c52,
+    type: 3}
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  interactDis: 3.75
 --- !u!1 &250863429
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,6 +742,37 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4461487987001789993}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1322204357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1322204358}
+  m_Layer: 7
+  m_Name: ClimbPointTop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1322204358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322204357}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 6.2699995, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6898933}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1492364185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,6 +1160,37 @@ Transform:
   - {fileID: 1552228630}
   m_Father: {fileID: 869572838}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1625275989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1625275990}
+  m_Layer: 7
+  m_Name: ClimbPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1625275990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625275989}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -6.18, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6898933}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1902519537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,6 +1516,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &2116126234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2116126235}
+  m_Layer: 7
+  m_Name: LeavePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2116126235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116126234}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 8.05, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6898933}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &832890292128292939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1413,6 +1570,16 @@ PrefabInstance:
       propertyPath: sprintBar
       value: 
       objectReference: {fileID: 67761421}
+    - target: {fileID: 3890964190980206912, guid: d764027c96fb34e0e956ef81777dd0b1,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890964190980206912, guid: d764027c96fb34e0e956ef81777dd0b1,
+        type: 3}
+      propertyPath: sprintSpeed
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7125780591914385502, guid: d764027c96fb34e0e956ef81777dd0b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1475,6 +1642,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 146152743}
+    - targetCorrespondingSourceObject: {fileID: 591962386935912892, guid: d764027c96fb34e0e956ef81777dd0b1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 146152744}
   m_SourcePrefab: {fileID: 100100000, guid: d764027c96fb34e0e956ef81777dd0b1, type: 3}
 --- !u!1001 &4461487987001789993
 PrefabInstance:
