@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 8141541512920764292}
   - component: {fileID: 3890964190980206912}
   - component: {fileID: 1246911444447725528}
+  - component: {fileID: 3026639311591660987}
+  - component: {fileID: 4516145860329716409}
+  - component: {fileID: 5918405680222745569}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -75,8 +78,8 @@ MonoBehaviour:
   playerInputs: {fileID: -944628639613478452, guid: 87995ebdb37ca48e7badc3ff577f3c52,
     type: 3}
   speed: 10
-  walkSpeed: 10
-  sprintSpeed: 20
+  walkSpeed: 15
+  sprintSpeed: 25
   crouchSpeed: 7
   walkDrag: 1
   sprintDrag: 1
@@ -118,6 +121,58 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &3026639311591660987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591962386935912892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac0a0d46ce607473da865d9d9b4e4afd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashlight: {fileID: 0}
+  playerInputs: {fileID: -944628639613478452, guid: 87995ebdb37ca48e7badc3ff577f3c52,
+    type: 3}
+--- !u!114 &4516145860329716409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591962386935912892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3036cf9aad0a14326acf5fa9ef2854ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInputs: {fileID: -944628639613478452, guid: 87995ebdb37ca48e7badc3ff577f3c52,
+    type: 3}
+  isOnLadder: 0
+  ladderSpeed: 10
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &5918405680222745569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591962386935912892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e41964a3c2c342d291cf592b3930b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInputs: {fileID: -944628639613478452, guid: 87995ebdb37ca48e7badc3ff577f3c52,
+    type: 3}
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  interactDis: 3.75
 --- !u!1 &2226042216105499990
 GameObject:
   m_ObjectHideFlags: 0

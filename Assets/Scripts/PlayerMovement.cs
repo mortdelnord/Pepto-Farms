@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     public float timeUntilRecharge;  
     private float sprintAmount;
     public float sprintMax;
-    private bool isMoving = false;
+    public bool isMoving = false;
     public CinemachineVirtualCamera playerCam;
 
     private CinemachineTransposer playerTransposer;
