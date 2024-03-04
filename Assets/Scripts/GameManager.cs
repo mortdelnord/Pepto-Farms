@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    public void CrowAlert(Transform crowPoint)
+    public void ScareCrowAlert(Transform crowPoint)
     {
         Debug.Log(crowPoint, activeScarecrow);
     }

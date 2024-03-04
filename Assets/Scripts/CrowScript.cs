@@ -39,7 +39,7 @@ public class CrowScript : MonoBehaviour
         {
             if (!playerMovement.isCrouching && playerMovement.isMoving)
             {
-                gameManager.CrowAlert(alertPoint);
+                gameManager.ScareCrowAlert(alertPoint);
                 inZone = false;
             }
         }
