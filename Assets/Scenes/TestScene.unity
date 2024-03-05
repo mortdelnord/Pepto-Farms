@@ -1064,9 +1064,8 @@ MonoBehaviour:
   huntTimerMax: 2
   investigateTimerMax: 1
   invesigateCheckMax: 3
-  investigateRange: 3
+  investigateRange: 15
   WanderRange: 15
-  spinSpeed: 10
   state: 0
 --- !u!195 &1068534731
 NavMeshAgent:

@@ -29,6 +29,8 @@ public class WalkingScareCrow : ScareCrow
     private Coroutine losePlayer;
     private Coroutine goToWander;
 
+    private Vector3 lastPlayerPos;
+
     public enum State
     {
         Idle,
@@ -93,6 +95,7 @@ public class WalkingScareCrow : ScareCrow
                 Debug.Log("state is hunt");
                 if (losePlayer == null)
                 {
+                    //scareCrowNavAgent.ResetPath();
                     Debug.Log("starting move to investigate");
                     losePlayer = StartCoroutine(MoveToInvestigate());
                 }
@@ -107,21 +110,27 @@ public class WalkingScareCrow : ScareCrow
     private void Wander()
     {
         
-        if (scareCrowNavAgent.path == null && !isTurning)
+        if (!scareCrowNavAgent.hasPath && !isTurning)
         {
             Vector3 point;
             if (RandomNavmeshPoint(transform.position, WanderRange, out point))
             {
-                scareCrowNavAgent.SetDestination(point);
-                Debug.Log(scareCrowNavAgent.destination);
+                NavMeshPath path = new NavMeshPath();
+                if (scareCrowNavAgent.CalculatePath(point, path))
+                {
+                    scareCrowNavAgent.path = path;
+                }
+                //scareCrowNavAgent.SetDestination(point);
+                Debug.Log(scareCrowNavAgent.path);
                 Debug.Log(scareCrowNavAgent.pathStatus);
             }
-        }else if (scareCrowNavAgent.path != null && !isTurning)
+        }else if (scareCrowNavAgent.hasPath && !isTurning)
         {
             if (scareCrowNavAgent.remainingDistance < 0.5f)
             {
                 Debug.Log("Reset path while wandering");
                 scareCrowNavAgent.ResetPath();
+                //scareCrowNavAgent.path = null;
                 
                 //isTurning = true;
             }
@@ -135,12 +144,19 @@ public class WalkingScareCrow : ScareCrow
     }
     private void Hunt()
     {
-        scareCrowNavAgent.SetDestination(player.transform.position);
+        NavMeshPath path = new NavMeshPath();
+        if (scareCrowNavAgent.CalculatePath(player.transform.position, path))
+        {
+            
+            scareCrowNavAgent.path = path;
+            lastPlayerPos = scareCrowNavAgent.destination;
+        }
+        //scareCrowNavAgent.SetDestination(player.transform.position);
         Debug.Log(scareCrowNavAgent.destination);
         Debug.Log(scareCrowNavAgent.pathStatus);
         if (Vector3.Distance(transform.position, player.transform.position) < 0.1f)
         {
-            Debug.Log(Vector3.Distance(transform.position, player.transform.position));
+            //Debug.Log(Vector3.Distance(transform.position, player.transform.position));
             KillPlayer();
             state = State.Idle;
         }
@@ -148,14 +164,19 @@ public class WalkingScareCrow : ScareCrow
     }
     private void Investigate()
     {
-        if (scareCrowNavAgent.path == null && investigateChecks < invesigateCheckMax)
+        if (!scareCrowNavAgent.hasPath && investigateChecks < invesigateCheckMax)
         {
             Debug.Log("no path so finding point");
             Vector3 point;
-            if (RandomNavmeshPoint(transform.position, investigateRange, out point))
+            if (RandomNavmeshPoint(lastPlayerPos, investigateRange, out point))
             {
                 Debug.Log(point);
-                scareCrowNavAgent.SetDestination(point);
+                NavMeshPath path = new NavMeshPath();
+                if (scareCrowNavAgent.CalculatePath(point, path))
+                {
+                    scareCrowNavAgent.path = path;
+                }
+                //scareCrowNavAgent.SetDestination(point);
                 // bool cantSeePoint = Physics.Linecast(transform.position, point);
                 // while (cantSeePoint)
                 // {
@@ -163,13 +184,14 @@ public class WalkingScareCrow : ScareCrow
                 //     scareCrowNavAgent.SetDestination(point);
                 // }
             }else Debug.Log("failed to find point");
-        }else if (scareCrowNavAgent.path != null && investigateChecks < invesigateCheckMax)
+        }else if (scareCrowNavAgent.hasPath && investigateChecks < invesigateCheckMax)
         {
-            Debug.Log("there is a path");
+            Debug.Log("Investigate there is a path");
             if (scareCrowNavAgent.remainingDistance < 0.5f)
             {
-                Debug.Log("Reset path");
+                Debug.Log(" Investigate Reset path");
                 scareCrowNavAgent.ResetPath();
+                //scareCrowNavAgent.path = null;
                 Debug.Log(investigateChecks);
                 investigateChecks ++;
             }
@@ -178,25 +200,33 @@ public class WalkingScareCrow : ScareCrow
         {
             Debug.Log("Investigation checks done");
             investigateChecks = 0;
-            goToWander = StartCoroutine(MoveToWander());
+            if (goToWander == null)
+            {
+                goToWander = StartCoroutine(MoveToWander());
+
+            }
         }
         
     }
 
     private IEnumerator MoveToInvestigate()
     {
+        losePlayer = null;
         Debug.Log("coroutine movetoinvestigate started");
         yield return new WaitForSeconds(huntTimerMax);
         Debug.Log("waited seconds");
         scareCrowNavAgent.ResetPath();
+        
         state = State.Investigate;
     }
     private IEnumerator MoveToWander()
     {
+        goToWander = null;
         Debug.Log("Move to wander started");
         yield return new WaitForSeconds(investigateTimerMax);
         Debug.Log("waited seconds");
         scareCrowNavAgent.ResetPath();
+        //scareCrowNavAgent.path = null;
         state = State.Wander;
     }
 
