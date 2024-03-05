@@ -186,7 +186,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46094122}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1058,7 +1058,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scareCrowNavAgent: {fileID: 0}
   player: {fileID: 0}
-  visionAngle: 0
+  visionAngle: 63
+  InRange: 0
+  seeDis: 16
+  huntTimerMax: 2
+  investigateTimerMax: 1
+  invesigateCheckMax: 3
+  investigateRange: 3
+  WanderRange: 15
+  spinSpeed: 10
+  state: 0
 --- !u!195 &1068534731
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1069,13 +1078,13 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0

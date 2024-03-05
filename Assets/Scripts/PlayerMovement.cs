@@ -204,7 +204,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator RechargeStamina()
     {
         yield return new WaitForSeconds(timeUntilRecharge);
-
+    
         while (sprintAmount < sprintMax)
         {
             sprintAmount += chargeRate / 10f;
