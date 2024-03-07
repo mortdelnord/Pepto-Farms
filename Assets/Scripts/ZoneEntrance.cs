@@ -19,6 +19,11 @@ public class ZoneEntrance : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        gameManager.activeScarecrow = zoneScarecrow;
+        if (collider.CompareTag("Player"))
+        {
+            gameManager.activeScarecrow = zoneScarecrow;
+            gameManager.ActivateScareCrow();
+
+        }
     }
 }

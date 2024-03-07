@@ -33,6 +33,7 @@ public abstract class ScareCrow : MonoBehaviour
 
     [Range(10f, 100f)]
     public float WanderRange;
+    public GameManager gameManager;
 
    public enum State
    {
@@ -48,6 +49,7 @@ public abstract class ScareCrow : MonoBehaviour
    {
     scareCrowNavAgent = gameObject.GetComponent<NavMeshAgent>();
     player = GameObject.Find("Player");
+    gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
    }
 
 
