@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 
 public class DataPersistenceManager : MonoBehaviour
 {
+    [Header("Debugginh")]
+    [SerializeField] private bool initializeDataIfNull = false;
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
     [SerializeField] private bool useEncryption;
@@ -15,6 +18,8 @@ public class DataPersistenceManager : MonoBehaviour
     private List<IDataPersistence> dataPersistenceObjects;
 
     private FileDataHandler dataHandler;
+
+    private string selectedProfileId = "test";
     
     public static DataPersistenceManager instance { get; private set; }
 
@@ -26,18 +31,41 @@ public class DataPersistenceManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogError("Found more than one Data Persistence Manager in the scene ");
+            Debug.Log("Found more than one Data Persistence Manager in the scene. Destroying Newest one ");
+            Destroy(this.gameObject);
+            return;
         }
         instance = this;
+        DontDestroyOnLoad(this.gameObject);
+        
+        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+    }
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("On scene loaded Called");
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
+
+    }
+    public void OnSceneUnloaded(Scene scene)
+    {
+        Debug.Log("On scene unlaoded called");
+        SaveGame();
     }
 
+   
     public void NewGame()
     {
         this.gameData = new GameData();
@@ -46,14 +74,20 @@ public class DataPersistenceManager : MonoBehaviour
     public void LoadGame()
     {
         //TODO - Load any saved data from a file handler
-        this.gameData = dataHandler.Load();
+        this.gameData = dataHandler.Load(selectedProfileId);
 
+        // start new game if the data is null and and we're configured for debugging
+
+        if (this.gameData == null && initializeDataIfNull)
+        {
+            NewGame();
+        }
 
         //if no datat can be Loaded, initialize to a new game
         if (this.gameData == null)
         {
-            Debug.Log("No Data was found. Initializing to defaults");
-            NewGame();
+            Debug.Log("No Data was found. A new Game needs to be started before dtata can be loaded");
+            return;
         }
         //TODO - push the Loaded data to all othe scripts that need it
         foreach( IDataPersistence dataPersistenceObj in dataPersistenceObjects)
@@ -67,6 +101,12 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void SaveGame()
     {
+
+        if (this.gameData == null)
+        {
+            Debug.LogWarning("No data was found. A New Game needs to be started before data can be saved.");
+            return;
+        }
         //TODO - pass the data to other scripts so they can Update it
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
@@ -76,7 +116,7 @@ public class DataPersistenceManager : MonoBehaviour
         Debug.Log("Saved death count = " + gameData.deathCount);
 
         //TODO - save that data to a file using the data handler
-        dataHandler.Save(gameData);
+        dataHandler.Save(gameData, selectedProfileId);
     }
 
     private void OnApplicationQuit()
@@ -89,5 +129,15 @@ public class DataPersistenceManager : MonoBehaviour
         IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
 
         return new List<IDataPersistence>(dataPersistenceObjects);
+    }
+
+    public bool HasGameData()
+    {
+        return gameData != null;
+    }
+
+    public Dictionary<string, GameData> GetAllProfilesGameData()
+    {
+        return dataHandler.LoadAllProfiles();
     }
 }

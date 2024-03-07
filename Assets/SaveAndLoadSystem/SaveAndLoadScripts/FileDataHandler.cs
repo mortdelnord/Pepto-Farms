@@ -19,10 +19,10 @@ public class FileDataHandler
         this.useEncryption = useEncryption;
     }
 
-    public GameData Load()
+    public GameData Load(string profileId)
     {
         // use Path.Combine for different OS
-        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
 
         GameData loadedData = null;
         if (File.Exists(fullPath))
@@ -56,10 +56,10 @@ public class FileDataHandler
         return loadedData;
     }
 
-    public void Save(GameData data)
+    public void Save(GameData data, string profileId)
     {
         // use Path.Combine for different OS
-        string fullPath = Path.Combine(dataDirPath, dataFileName);
+        string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
         try
         {
             // create the directory the file will be written to if it doesn't already exist
@@ -87,6 +87,44 @@ public class FileDataHandler
         {
             Debug.LogError("Error occured when trying to save data to file: " + fullPath + "\n" + e);
         }
+    }
+
+    public Dictionary<string, GameData> LoadAllProfiles()
+    {
+        Dictionary<string, GameData> profileDictionary = new Dictionary<string, GameData>();
+
+        //LOOP OVER ALL DIRECTORY NAMES
+
+        IEnumerable<DirectoryInfo> dirInfos = new DirectoryInfo(dataDirPath).EnumerateDirectories();
+        foreach(DirectoryInfo dirInfo in dirInfos)
+        {
+            string profileId = dirInfo.Name;
+
+            //defensive programming
+            string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
+            if (!File.Exists(fullPath))
+            {
+                Debug.LogWarning("Skippping directory when oading all profiles because it does not contain data: " + profileId);
+                continue;
+            }
+
+            // load the game for this profile and put it in the dictionary
+            GameData profileData = Load(profileId);
+
+            // defensive programming
+            if (profileData != null)
+            {
+                profileDictionary.Add(profileId, profileData);
+            }else
+            {
+                Debug.LogError("Tried to loiad profile but something went wrong. ProfileId: " + profileId);
+            }
+
+
+        }
+
+
+        return profileDictionary;
     }
 
     // XOR encryption
