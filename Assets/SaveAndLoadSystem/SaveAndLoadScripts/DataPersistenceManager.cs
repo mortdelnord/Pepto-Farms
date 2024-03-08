@@ -9,6 +9,11 @@ public class DataPersistenceManager : MonoBehaviour
 {
     [Header("Debugginh")]
     [SerializeField] private bool initializeDataIfNull = false;
+
+    [SerializeField] private bool disableDataPersistence = false;
+    [SerializeField] private bool overrideSelectedProfileId = false;
+    [SerializeField] private string testSelectedProfileId = "test";
+
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
     [SerializeField] private bool useEncryption;
@@ -19,7 +24,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     private FileDataHandler dataHandler;
 
-    private string selectedProfileId = "test";
+    private string selectedProfileId = "";
     
     public static DataPersistenceManager instance { get; private set; }
 
@@ -37,8 +42,21 @@ public class DataPersistenceManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
+
+        if (disableDataPersistence)
+        {
+            Debug.LogWarning("Data persistence is disabaled");
+        }
         
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+
+        this.selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
+        if (overrideSelectedProfileId)
+        {
+            this.selectedProfileId = testSelectedProfileId;
+            Debug.LogWarning("Overrode sleected profile id with test profile id");
+        }
+
     }
 
     private void OnEnable()
@@ -65,6 +83,14 @@ public class DataPersistenceManager : MonoBehaviour
         SaveGame();
     }
 
+
+
+    public void ChangeSelectedProfileId(string newProfileId)
+    {
+        this.selectedProfileId = newProfileId;
+
+        LoadGame();
+    }
    
     public void NewGame()
     {
@@ -73,6 +99,11 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void LoadGame()
     {
+
+        if (disableDataPersistence)
+        {
+            return;
+        }
         //TODO - Load any saved data from a file handler
         this.gameData = dataHandler.Load(selectedProfileId);
 
@@ -101,6 +132,10 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void SaveGame()
     {
+        if (disableDataPersistence)
+        {
+            return;
+        }
 
         if (this.gameData == null)
         {
@@ -113,7 +148,9 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.SaveData(ref gameData);
         }
 
-        Debug.Log("Saved death count = " + gameData.deathCount);
+
+        gameData.lastUpdated = System.DateTime.Now.ToBinary();
+        //Debug.Log("Saved death count = " + gameData.deathCount);
 
         //TODO - save that data to a file using the data handler
         dataHandler.Save(gameData, selectedProfileId);

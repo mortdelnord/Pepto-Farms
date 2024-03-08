@@ -21,6 +21,13 @@ public class FileDataHandler
 
     public GameData Load(string profileId)
     {
+
+        //base case - if profile id is null
+
+        if (profileId == null)
+        {
+            return null;
+        }
         // use Path.Combine for different OS
         string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
 
@@ -58,6 +65,11 @@ public class FileDataHandler
 
     public void Save(GameData data, string profileId)
     {
+
+        if (profileId == null)
+        {
+            return;
+        }
         // use Path.Combine for different OS
         string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
         try
@@ -125,6 +137,45 @@ public class FileDataHandler
 
 
         return profileDictionary;
+    }
+
+
+    public string GetMostRecentlyUpdatedProfileId()
+    {
+
+        string mostRecentProfileId = null;
+        Dictionary<string, GameData> profileGameData = LoadAllProfiles();
+        foreach (KeyValuePair<string, GameData> pair in profileGameData)
+        {
+            string profileId = pair.Key;
+            GameData gameData = pair.Value;
+
+
+            //skip entry if gamedata is null
+            if (gameData == null)
+            {
+                continue;
+            }
+
+            if (mostRecentProfileId == null)
+            {
+                mostRecentProfileId = profileId;
+            }
+            // otherwise compare to see which date is the most recent 
+            else 
+            {
+                DateTime mostRecentDateTime = DateTime.FromBinary(profileGameData[mostRecentProfileId].lastUpdated);
+                DateTime newDateTime = DateTime.FromBinary(gameData.lastUpdated);
+
+                if (newDateTime > mostRecentDateTime)
+                {
+                    mostRecentProfileId = profileId;
+                }
+            }
+
+        }
+
+        return mostRecentProfileId;
     }
 
     // XOR encryption

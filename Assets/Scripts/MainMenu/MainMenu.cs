@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.Video;
 
-public class MainMenu : MonoBehaviour
+
+public class MainMenu : Menu
 {
+    [Header ("Menu Navigation")]
+
+    [SerializeField] private SaveSlotsMenu saveSlotMenu;
 
     [SerializeField] private Button continueButton;
     [SerializeField] private Button newGameButton;
+    [SerializeField] private Button loadGameButton;
 
 
     private void Start()
@@ -17,15 +21,19 @@ public class MainMenu : MonoBehaviour
         if (!DataPersistenceManager.instance.HasGameData())
         {
             continueButton.interactable = false;
+            loadGameButton.interactable = false;
         }
     }
     public void OnNewGameClicked()
     {
-        DisableMenuButtons();
-        //create a new game - which will intialize our game data
-        DataPersistenceManager.instance.NewGame();
-        //load the gameplayscene
-        SceneManager.LoadSceneAsync("TestScene");
+        saveSlotMenu.ActivateMenu(false);
+        this.DeactivateMenu();
+    }
+
+    public void OnLoadGame()
+    {
+        saveSlotMenu.ActivateMenu(true);
+        this.DeactivateMenu();
     }
 
     public void OnContinueGameClicked()
@@ -40,5 +48,15 @@ public class MainMenu : MonoBehaviour
     {
         newGameButton.interactable = false;
         continueButton.interactable = false;
+    }
+
+    public void ActivateMenu()
+    {
+        this.gameObject.SetActive(true);
+    }
+
+    public void DeactivateMenu()
+    {
+        this.gameObject.SetActive(false);
     }
 }

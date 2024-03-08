@@ -3576,6 +3576,11 @@ PrefabInstance:
       propertyPath: initializeDataIfNull
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5610329911444153919, guid: c7073a17e9ea74b9991b7962a9734329,
+        type: 3}
+      propertyPath: overrideSelectedProfileId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8274975161683708056, guid: c7073a17e9ea74b9991b7962a9734329,
         type: 3}
       propertyPath: m_Name
