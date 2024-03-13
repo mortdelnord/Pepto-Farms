@@ -11,6 +11,7 @@ public class FileDataHandler
     private bool useEncryption = false;
 
     private readonly string encryptionCodeWord = "crow";
+    private readonly string backupExtension = ".bak";
 
     public FileDataHandler(string dataDirPath, string dataFfileName, bool useEncryption)
     {
@@ -19,7 +20,7 @@ public class FileDataHandler
         this.useEncryption = useEncryption;
     }
 
-    public GameData Load(string profileId)
+    public GameData Load(string profileId, bool allowRestoreFromBackup = true)
     {
 
         //base case - if profile id is null
@@ -57,7 +58,19 @@ public class FileDataHandler
             }
             catch (Exception e)
             {
-                Debug.LogError("Error occured when trying to load data from file: " + fullPath + "\n" + e);
+                if (allowRestoreFromBackup)
+                {
+
+                    Debug.LogWarning("Error occured when trying to load data from file: " + fullPath + "\n" + e);
+                    bool rollBackSuccess = AttemptRollBack(fullPath);
+                    if (rollBackSuccess)
+                    {
+                        loadedData = Load(profileId, false);
+                    }
+                }else
+                {
+                    Debug.LogError("Error occured when trying to load data from file: " + fullPath + "\n" + e);
+                }
             }
         }
         return loadedData;
@@ -72,6 +85,7 @@ public class FileDataHandler
         }
         // use Path.Combine for different OS
         string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
+        string backupFilePath = fullPath + backupExtension;
         try
         {
             // create the directory the file will be written to if it doesn't already exist
@@ -93,6 +107,16 @@ public class FileDataHandler
                 {
                     writer.Write(dataToStore);
                 }
+            }
+
+            //verify the newly saved file can be loaded successfully
+            GameData verifiedGameData = Load(profileId);
+            if (verifiedGameData != null)
+            {
+                File.Copy(fullPath, backupFilePath, true);
+            }else
+            {
+                throw new Exception("Save file could not be verified");
             }
         }
         catch (Exception e)
@@ -187,5 +211,31 @@ public class FileDataHandler
             modifiedData += (char) (data[i] ^ encryptionCodeWord[i % encryptionCodeWord.Length]);
         }
         return modifiedData;
+    }
+
+    private bool AttemptRollBack(string fullPath)
+    {
+        bool success = false;
+        string backupFilePath = fullPath + backupExtension;
+
+        try
+        {
+            if (File.Exists(backupFilePath))
+            {
+                File.Copy(backupFilePath, fullPath, true);
+                success = true;
+                Debug.LogWarning("Had to roll back to backup file at: " + backupFilePath);
+            }
+            else
+            {
+                throw new Exception("Tried to roll back, but no backup file esisst to roll back to");
+            }
+        }
+        catch(Exception e)
+        {
+            Debug.LogError("Error occured when trying to roll back to backup file at: " + backupFilePath + "\n" + e);
+        }
+
+        return success;
     }
 }

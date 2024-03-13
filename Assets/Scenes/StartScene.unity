@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f552518c90534c5b95b796dd7570ece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstSelected: {fileID: 1390483294}
+  firstSelected: {fileID: 1390483295}
   saveSlotMenu: {fileID: 681329958}
   continueButton: {fileID: 1331695388}
   newGameButton: {fileID: 1390483295}

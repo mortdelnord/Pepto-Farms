@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     {
         this.deathCount = data.deathCount;
     }
-    public void SaveData(ref GameData data)
+    public void SaveData(GameData data)
     {
         data.deathCount = this.deathCount;
     }
