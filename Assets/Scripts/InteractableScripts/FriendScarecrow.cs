@@ -18,8 +18,14 @@ public class FriendScarecrow : BaseInteraction, IDataPersistence
     public Animator scareCrowAnimator;
     public float animationTime;
     public GameObject ScavengerHuntStamp;
+    
 
     private bool isCollected = false;
+
+    private void Awake()
+    {
+        UpdateCanvas();
+    }
 
 
 
@@ -27,6 +33,7 @@ public class FriendScarecrow : BaseInteraction, IDataPersistence
     {
         if (!isCollected)
         {
+            isCollected = true;
             Debug.Log("Animating");
             scareCrowAnimator.SetTrigger("Interact");
             Invoke(nameof(UpdateCanvas), animationTime);
@@ -42,10 +49,13 @@ public class FriendScarecrow : BaseInteraction, IDataPersistence
 
     private void UpdateCanvas()
     {
-        Debug.Log("Done Animating");
-        isCollected = true;
-        // ScavengerHuntStamp.SetActive(true);
-        // ScavengerHuntStamp.transform.rotation = RandomRotation();
+        if (isCollected)
+        {
+            Debug.Log("Done Animating");
+            ScavengerHuntStamp.SetActive(true);
+            ScavengerHuntStamp.transform.rotation = RandomRotation();
+
+        }
     }
 
     private Quaternion RandomRotation()
@@ -58,7 +68,7 @@ public class FriendScarecrow : BaseInteraction, IDataPersistence
     public void LoadData(GameData data)
     {   
         data.coinsCollected.TryGetValue(id, out isCollected);
-        
+        UpdateCanvas();
     }
 
     public void SaveData(GameData data)

@@ -11,6 +11,16 @@ public class GameData
 
     public Vector3 playerPosition;
 
+    public GameObject activeScareCrow;
+    public Vector3 walkScareScrowPos;
+    public Vector3 jumpScareCrowPos;
+    public Vector3 crawlScareCrowPos;
+
+    public int walkscareCrowState;
+    public int jumpScareCrowState;
+    public int crawlScareCrowState;
+    public int gameState;
+
     public SerializableDictionary<string, bool> coinsCollected;
 
 
@@ -22,6 +32,14 @@ public class GameData
         this.deathCount = 0;
         playerPosition = Vector3.zero;
         coinsCollected = new SerializableDictionary<string, bool>();
+        activeScareCrow = null;
+        walkScareScrowPos = new Vector3(34.59f, 0f, 7.09f);
+        jumpScareCrowPos = Vector3.zero;
+        crawlScareCrowPos = Vector3.zero;
+        gameState = 0;
+        walkscareCrowState = 0;
+        jumpScareCrowState = 0;
+        crawlScareCrowState = 0;
     }
 
     public int GetPercentageComplete()

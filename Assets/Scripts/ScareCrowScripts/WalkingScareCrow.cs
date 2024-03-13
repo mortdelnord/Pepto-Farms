@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WalkingScareCrow : ScareCrow
+public class WalkingScareCrow : ScareCrow, IDataPersistence
 {
     
     // [Range(0.0f,180.0f)]
@@ -259,5 +259,18 @@ public class WalkingScareCrow : ScareCrow
     private void KillPlayer()
     {
         gameManager.UpdateDeathCount();
+    }
+
+
+    public void LoadData(GameData data)
+    {
+        transform.position = data.walkScareScrowPos;
+        state = (State)data.walkscareCrowState;
+
+    }
+    public void SaveData(GameData data)
+    {
+        data.walkscareCrowState = (int)state;
+        data.walkScareScrowPos = transform.position;
     }
 }

@@ -14,6 +14,21 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     private int deathCount = 0;
 
+    public enum State
+    {
+        GameStart,
+        OneStamp,
+        TwoStamp,
+        EndGame
+    }
+
+    public State state;
+
+    private void Update()
+    {
+
+    }
+
 
     
 
@@ -54,10 +69,18 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         this.deathCount = data.deathCount;
+        state = (State)data.gameState;
+        activeScarecrow = data.activeScareCrow;
+        ActivateScareCrow();
+       // activeScarecrow.transform.position = data.scareScrowPos;
+
     }
     public void SaveData(GameData data)
     {
         data.deathCount = this.deathCount;
+        data.gameState = (int)state;
+        data.activeScareCrow = this.activeScarecrow;
+        //data.scareScrowPos = this.activeScarecrow.transform.position;
     }
 
 
