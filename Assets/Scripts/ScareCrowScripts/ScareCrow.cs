@@ -5,6 +5,13 @@ using UnityEngine.AI;
 
 public abstract class ScareCrow : MonoBehaviour
 {
+   [SerializeField] public string id;
+
+    [ContextMenu("Generate guid for id")]
+    private void GenerateGuid()
+    {
+        id = System.Guid.NewGuid().ToString();
+    }
    public NavMeshAgent scareCrowNavAgent;
    public GameObject player;
 
@@ -48,6 +55,7 @@ public abstract class ScareCrow : MonoBehaviour
    private void Awake()
    {
     scareCrowNavAgent = gameObject.GetComponent<NavMeshAgent>();
+    scareCrowNavAgent.ResetPath();
     player = GameObject.Find("Player");
     gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
    }

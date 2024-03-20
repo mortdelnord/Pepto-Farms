@@ -12,6 +12,7 @@ public class GameData
     public Vector3 playerPosition;
 
     public GameObject activeScareCrow;
+    public string activeScareCrowId;
     public Vector3 walkScareScrowPos;
     public Vector3 jumpScareCrowPos;
     public Vector3 crawlScareCrowPos;
@@ -33,10 +34,11 @@ public class GameData
         playerPosition = Vector3.zero;
         coinsCollected = new SerializableDictionary<string, bool>();
         activeScareCrow = null;
+        activeScareCrowId = null;
         walkScareScrowPos = new Vector3(34.59f, 0f, 7.09f);
         jumpScareCrowPos = Vector3.zero;
         crawlScareCrowPos = Vector3.zero;
-        gameState = 0;
+        gameState = 4;
         walkscareCrowState = 0;
         jumpScareCrowState = 0;
         crawlScareCrowState = 0;

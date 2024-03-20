@@ -15,6 +15,8 @@ public class FriendScarecrow : BaseInteraction, IDataPersistence
         id = System.Guid.NewGuid().ToString();
     }
 
+    private GameManager gameManager;
+
     public Animator scareCrowAnimator;
     public float animationTime;
     public GameObject ScavengerHuntStamp;
@@ -24,7 +26,9 @@ public class FriendScarecrow : BaseInteraction, IDataPersistence
 
     private void Awake()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         UpdateCanvas();
+        
     }
 
 
@@ -54,6 +58,7 @@ public class FriendScarecrow : BaseInteraction, IDataPersistence
             Debug.Log("Done Animating");
             ScavengerHuntStamp.SetActive(true);
             ScavengerHuntStamp.transform.rotation = RandomRotation();
+            gameManager.UpdateGameState();
 
         }
     }

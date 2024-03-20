@@ -22,7 +22,10 @@ public class ZoneEntrance : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             gameManager.activeScarecrow = zoneScarecrow;
-            gameManager.ActivateScareCrow();
+            if (gameManager.isStarted)
+            {
+                gameManager.ActivateScareCrow();
+            }
 
         }
     }

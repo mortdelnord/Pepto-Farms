@@ -180,6 +180,7 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
     }
     private void Investigate()
     {
+        
         if (!scareCrowNavAgent.hasPath && investigateChecks < invesigateCheckMax) // if scarescrow doesn't have a path and hasn't investigated its max amount of points
         {
             //Debug.Log("no path so finding point");
@@ -264,13 +265,17 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        transform.position = data.walkScareScrowPos;
+        this.transform.position = data.walkScareScrowPos;
         state = (State)data.walkscareCrowState;
+        lastPlayerPos = data.playerPosition;
+        Debug.Log(transform.position + "and " + data.walkScareScrowPos);
+
 
     }
     public void SaveData(GameData data)
     {
         data.walkscareCrowState = (int)state;
-        data.walkScareScrowPos = transform.position;
+        data.walkScareScrowPos = this.transform.position;
+        Debug.Log(data.walkScareScrowPos + "and " + transform.position);
     }
 }
