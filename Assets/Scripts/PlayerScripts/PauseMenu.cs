@@ -3,12 +3,19 @@ using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
-public class PlayerPauseMenu : MonoBehaviour
+public class PauseMenu : MonoBehaviour
 {
     public InputActionAsset playerInputs;
     private InputAction pauseInput;
     public GameObject pauseMenu;
+
+    [Header ("Buttons")]
+    public Button saveButton;
+    public Button continueButton;
+    public Button mainMenuButton;
+    public Button exitButton;
 
     private bool isPaused = false;
 
