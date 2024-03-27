@@ -151,6 +151,12 @@ public class GameManager : MonoBehaviour, IDataPersistence
         deathCount ++;
     }
 
+    public void KillPlayer(GameObject scareCrow)
+    {
+        Debug.Log(scareCrow);
+        DataPersistenceManager.instance.LoadGame();
+    }
+
     public void LoadData(GameData data)
     {
         this.deathCount = data.deathCount;

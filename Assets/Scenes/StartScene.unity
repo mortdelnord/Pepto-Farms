@@ -686,12 +686,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 574098955}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &668538598 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5572677068105987805, guid: 1c69c45b91c4747f2ae5568b70fe28cf,
-    type: 3}
-  m_PrefabInstance: {fileID: 1387694129509401355}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &668538599 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2850355911793960376, guid: 1c69c45b91c4747f2ae5568b70fe28cf,
@@ -751,7 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf707d61731b4b049cf1cc814c25fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstSelected: {fileID: 668538598}
+  firstSelected: {fileID: 2145186428}
   mainMenu: {fileID: 446432224}
   backButton: {fileID: 2145186428}
 --- !u!1 &693489035
