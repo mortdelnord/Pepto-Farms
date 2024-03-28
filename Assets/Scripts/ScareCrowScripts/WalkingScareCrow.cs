@@ -261,7 +261,7 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
     {
         state = State.Wander;
         gameManager.UpdateDeathCount();
-        gameManager.KillPlayer(gameObject);
+        gameManager.KillPlayer(jumpscareObject);
     }
 
 

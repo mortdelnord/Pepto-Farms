@@ -13,6 +13,7 @@ public abstract class ScareCrow : MonoBehaviour
         id = System.Guid.NewGuid().ToString();
     }
    public NavMeshAgent scareCrowNavAgent;
+   public GameObject jumpscareObject;
    public GameObject player;
 
    public Vector3 lastPlayerPos;
