@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObject: {fileID: 0}
+  id: 
   scareCrowAnimator: {fileID: 2114209044883626004}
   animationTime: 0
   ScavengerHuntStamp: {fileID: 0}

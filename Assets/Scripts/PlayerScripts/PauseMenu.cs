@@ -18,10 +18,13 @@ public class PauseMenu : MonoBehaviour
     public Button mainMenuButton;
     public Button exitButton;
 
-    private bool isPaused = false;
+    public bool isPaused = false;
+    public bool isDead = false;
+    public static PauseMenu instance { get; private set; }
 
     private void Start()
     {
+        instance = this;
         playerInputs.FindActionMap("Player").Enable();
         pauseInput = playerInputs.FindActionMap("Player").FindAction("Pause");
         isPaused = false;
@@ -37,7 +40,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    private void PauseGame()
+    public void PauseGame()
     {
         Debug.Log(isPaused);
         if (isPaused)
@@ -48,18 +51,25 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0;
 
             pauseMenu.SetActive(true);
-            saveButton.interactable = true;
+            if (!isDead)
+            {
+                saveButton.interactable = true;
+            }else {saveButton.interactable = false;}
             continueButton.interactable = true;
             exitButton.interactable = true;
             mainMenuButton.interactable = true;
 
         }else
         {
-            Debug.Log("not Pausing");
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            Time.timeScale = 1;            
-            pauseMenu.SetActive(false);
+            if (!isDead)
+            {
+                Debug.Log("not Pausing");
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                Time.timeScale = 1;            
+                pauseMenu.SetActive(false);
+
+            }
         }
     }
 
@@ -71,15 +81,24 @@ public class PauseMenu : MonoBehaviour
     public void ContinueButton()
     {
         isPaused = false;
+        if (isDead)
+        {
+            isDead = false;
+            DataPersistenceManager.instance.LoadGame();
+        }
         PauseGame();
     }
     public void MainMenuButton()
     {
+        isPaused = false;
+        isDead = false;
         DataPersistenceManager.instance.SaveGame();
         SceneManager.LoadSceneAsync("StartScene");
     }
     public void ExitButton()
     {
+        isDead = false;
+        isPaused = false;
         DataPersistenceManager.instance.SaveGame();
         Application.Quit();
     }

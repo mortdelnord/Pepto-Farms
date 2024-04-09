@@ -151,9 +151,12 @@ public class GameManager : MonoBehaviour, IDataPersistence
         deathCount ++;
     }
 
-    public void KillPlayer(GameObject jumpscareObject)
+    public void KillPlayer()
     {
-        jumpscareObject.SetActive(true);
+        Debug.Log("Game Manager killing player");
+        PauseMenu.instance.isDead = true;
+        PauseMenu.instance.isPaused = true;
+        PauseMenu.instance.PauseGame();
         //DataPersistenceManager.instance.LoadGame();
     }
 

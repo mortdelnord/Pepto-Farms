@@ -33,6 +33,8 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
     private Coroutine losePlayer = null;
     private Coroutine goToWander = null;
     public Animator scarecrowAnimator;
+    public Transform jumpScarePoint;
+    public float animTime;
     
 
     //public Vector3 lastPlayerPos;
@@ -121,7 +123,11 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
                 //Debug.Log("state is hunt");
                 if (losePlayer == null) // if a coroutine isn't already going
                 {
-                    scareCrowNavAgent.ResetPath(); // reset current path 
+                    if (scareCrowNavAgent.enabled == true)
+                    {
+                        scareCrowNavAgent.ResetPath(); // reset current path 
+
+                    }
                     //Debug.Log("starting move to investigate");
                     losePlayer = StartCoroutine(MoveToInvestigate()); // start coroutine
                 }//else Debug.Log("lose player is not null");
@@ -135,86 +141,97 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
     }
     private void Wander()
     {
-        
-        if (!scareCrowNavAgent.hasPath) // if the scarecrow doesn't have a path 
+        if (scareCrowNavAgent.enabled == true)
         {
-            Vector3 point;
-            if (RandomNavmeshPoint(transform.position, WanderRange, out point)) // get one centered around it at a larger radius 
+            if (!scareCrowNavAgent.hasPath) // if the scarecrow doesn't have a path 
             {
-                NavMeshPath path = new NavMeshPath();
-                if (scareCrowNavAgent.CalculatePath(point, path)) // make a new path
+                Vector3 point;
+                if (RandomNavmeshPoint(transform.position, WanderRange, out point)) // get one centered around it at a larger radius 
                 {
-                    scareCrowNavAgent.path = path;
-                }                
-                //Debug.Log(scareCrowNavAgent.path);
-                //Debug.Log(scareCrowNavAgent.pathStatus);
-            }
-        }else if (scareCrowNavAgent.hasPath) // if scarecrow does have a path 
-        {
-            if (scareCrowNavAgent.remainingDistance < 0.5f) // if its almost there
+                    NavMeshPath path = new NavMeshPath();
+                    if (scareCrowNavAgent.CalculatePath(point, path)) // make a new path
+                    {
+                        scareCrowNavAgent.path = path;
+                    }                
+                    //Debug.Log(scareCrowNavAgent.path);
+                    //Debug.Log(scareCrowNavAgent.pathStatus);
+                }
+            }else if (scareCrowNavAgent.hasPath) // if scarecrow does have a path 
             {
-                //Debug.Log("Reset path while wandering");
-                scareCrowNavAgent.ResetPath(); // start the process again!               
+                if (scareCrowNavAgent.remainingDistance < 0.5f) // if its almost there
+                {
+                    //Debug.Log("Reset path while wandering");
+                    scareCrowNavAgent.ResetPath(); // start the process again!               
+                }
             }
+
         }
+        
         
     }
     private void Hunt()
     {
-        NavMeshPath path = new NavMeshPath();
-        if (scareCrowNavAgent.CalculatePath(player.transform.position, path)) // make a path toward player 
-        {            
-            scareCrowNavAgent.path = path;
-            lastPlayerPos = scareCrowNavAgent.destination; // the last player location is that paths destination
-        }
-        
-        //Debug.Log(scareCrowNavAgent.destination);
-        //Debug.Log(scareCrowNavAgent.pathStatus);
-        if (Vector3.Distance(transform.position, player.transform.position) < 0.1f) // if your close, kill the player and go idle
+        if (scareCrowNavAgent.enabled == true)
         {
-            //Debug.Log(Vector3.Distance(transform.position, player.transform.position));
-            KillPlayer();
-            state = State.Idle;
+            NavMeshPath path = new NavMeshPath();
+            if (scareCrowNavAgent.CalculatePath(player.transform.position, path)) // make a path toward player 
+            {            
+                scareCrowNavAgent.path = path;
+                lastPlayerPos = scareCrowNavAgent.destination; // the last player location is that paths destination
+            }
+            
+            //Debug.Log(scareCrowNavAgent.destination);
+            //Debug.Log(scareCrowNavAgent.pathStatus);
+            if (Vector3.Distance(transform.position, player.transform.position) < 0.1f) // if your close, kill the player and go idle
+            {
+                //Debug.Log(Vector3.Distance(transform.position, player.transform.position));
+                KillPlayer();
+                state = State.Idle;
+            }
+
         }
 
     }
     private void Investigate()
     {
-        
-        if (!scareCrowNavAgent.hasPath && investigateChecks < invesigateCheckMax) // if scarescrow doesn't have a path and hasn't investigated its max amount of points
+        if (scareCrowNavAgent.enabled == true)
         {
-            //Debug.Log("no path so finding point");
-            Vector3 point;
-            if (RandomNavmeshPoint(lastPlayerPos, investigateRange, out point)) // Find a random point on the navMesh centered around the last known location of the player
+            if (!scareCrowNavAgent.hasPath && investigateChecks < invesigateCheckMax) // if scarescrow doesn't have a path and hasn't investigated its max amount of points
             {
-                //Debug.Log(point);
-                NavMeshPath path = new NavMeshPath();
-                if (scareCrowNavAgent.CalculatePath(point, path)) // make a new path towards that point 
+                //Debug.Log("no path so finding point");
+                Vector3 point;
+                if (RandomNavmeshPoint(lastPlayerPos, investigateRange, out point)) // Find a random point on the navMesh centered around the last known location of the player
                 {
-                    scareCrowNavAgent.path = path;
+                    //Debug.Log(point);
+                    NavMeshPath path = new NavMeshPath();
+                    if (scareCrowNavAgent.CalculatePath(point, path)) // make a new path towards that point 
+                    {
+                        scareCrowNavAgent.path = path;
+                    }
+                    
+                }//else Debug.Log("failed to find point"); // code will loop if the point wasn't found but still investigating
+            }else if (scareCrowNavAgent.hasPath && investigateChecks < invesigateCheckMax) // if we did find a point
+            {
+                //Debug.Log("Investigate there is a path");
+                if (scareCrowNavAgent.remainingDistance < 0.5f) // If you've almost reached the point
+                {
+                    //Debug.Log(" Investigate Reset path");
+                    scareCrowNavAgent.ResetPath(); // stop path 
+                    //Debug.Log(investigateChecks);
+                    investigateChecks ++; // congrats you've investigated a point, add it to the total
                 }
-                
-            }//else Debug.Log("failed to find point"); // code will loop if the point wasn't found but still investigating
-        }else if (scareCrowNavAgent.hasPath && investigateChecks < invesigateCheckMax) // if we did find a point
-        {
-            //Debug.Log("Investigate there is a path");
-            if (scareCrowNavAgent.remainingDistance < 0.5f) // If you've almost reached the point
-            {
-                //Debug.Log(" Investigate Reset path");
-                scareCrowNavAgent.ResetPath(); // stop path 
-                //Debug.Log(investigateChecks);
-                investigateChecks ++; // congrats you've investigated a point, add it to the total
             }
-        }
-        if (investigateChecks >= invesigateCheckMax) // if your checks are maxxed out adn you haven't tried to wander yet 
-        {
-            //Debug.Log("Investigation checks done");
-            investigateChecks = 0;
-            if (goToWander == null)
+            if (investigateChecks >= invesigateCheckMax) // if your checks are maxxed out adn you haven't tried to wander yet 
             {
-                goToWander = StartCoroutine(MoveToWander()); // go wander the maze!
+                //Debug.Log("Investigation checks done");
+                investigateChecks = 0;
+                if (goToWander == null)
+                {
+                    goToWander = StartCoroutine(MoveToWander()); // go wander the maze!
 
+                }
             }
+
         }
         
     }
@@ -259,9 +276,14 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
 
     private void KillPlayer()
     {
-        state = State.Wander;
+        state = State.Idle;
         gameManager.UpdateDeathCount();
-        gameManager.KillPlayer(jumpscareObject);
+        scareCrowNavAgent.enabled = false;
+        transform.position = jumpScarePoint.position;
+        transform.rotation = jumpScarePoint.rotation;
+        scarecrowAnimator.SetTrigger("JumpScare");
+
+        Invoke(nameof(Killing), animTime);
     }
 
 
@@ -279,5 +301,13 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
         data.walkscareCrowState = (int)state;
         data.walkScareScrowPos = this.transform.position;
         Debug.Log(data.walkScareScrowPos + "and " + transform.position);
+    }
+
+    private void Killing()
+    {
+        Debug.Log("Killing Player");
+        scareCrowNavAgent.enabled = true;
+        gameManager.KillPlayer();
+
     }
 }

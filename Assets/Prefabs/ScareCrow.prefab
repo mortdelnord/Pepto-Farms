@@ -175,7 +175,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d76cfac71267e4a9ca66b1040fda36f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   scareCrowNavAgent: {fileID: 0}
+  jumpscareObject: {fileID: 0}
   player: {fileID: 0}
   lastPlayerPos: {x: 0, y: 0, z: 0}
   visionAngle: 63
@@ -187,4 +189,6 @@ MonoBehaviour:
   investigateChecks: 0
   investigateRange: 15
   WanderRange: 15
+  gameManager: {fileID: 0}
   state: 0
+  scarecrowAnimator: {fileID: 0}
