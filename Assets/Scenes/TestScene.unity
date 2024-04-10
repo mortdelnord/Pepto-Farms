@@ -364,6 +364,8 @@ GameObject:
   m_Component:
   - component: {fileID: 129258710}
   - component: {fileID: 129258709}
+  - component: {fileID: 129258712}
+  - component: {fileID: 129258711}
   m_Layer: 0
   m_Name: ScareCrowArea
   m_TagString: Untagged
@@ -420,6 +422,57 @@ Transform:
   - {fileID: 498349192}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &129258711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129258708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -334000983
+  m_StartPoint: {x: 1.7899055, y: 0, z: 0}
+  m_EndPoint: {x: -1.5471821, y: 0, z: 0}
+  m_Width: 15.271158
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 4
+--- !u!114 &129258712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129258708}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -334000983
+  m_CollectObjects: 2
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 4
+  m_GenerateLinks: 1
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 278f5a5aa658149fea72818878323021, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &146152737 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 591962386935912892, guid: d764027c96fb34e0e956ef81777dd0b1,
@@ -2635,7 +2688,7 @@ PrefabInstance:
     - target: {fileID: 2221476700149436360, guid: 66bbd7b6af2604b8ca71a3ce9b28286b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2829819187543766002, guid: 66bbd7b6af2604b8ca71a3ce9b28286b,
         type: 3}
@@ -6557,7 +6610,7 @@ PrefabInstance:
     - target: {fileID: 330139278774249450, guid: 18d158dc29f2d4c808042402413fa9cb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.78
+      value: 35.82
       objectReference: {fileID: 0}
     - target: {fileID: 330139278774249450, guid: 18d158dc29f2d4c808042402413fa9cb,
         type: 3}
@@ -6567,7 +6620,7 @@ PrefabInstance:
     - target: {fileID: 330139278774249450, guid: 18d158dc29f2d4c808042402413fa9cb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.19
+      value: 11.25
       objectReference: {fileID: 0}
     - target: {fileID: 330139278774249450, guid: 18d158dc29f2d4c808042402413fa9cb,
         type: 3}
@@ -6606,9 +6659,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4301898810827119558, guid: 18d158dc29f2d4c808042402413fa9cb,
         type: 3}
+      propertyPath: id
+      value: 7193bd5b-03bd-45d4-b163-79a697a26a68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301898810827119558, guid: 18d158dc29f2d4c808042402413fa9cb,
+        type: 3}
+      propertyPath: animTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301898810827119558, guid: 18d158dc29f2d4c808042402413fa9cb,
+        type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4301898810827119558, guid: 18d158dc29f2d4c808042402413fa9cb,
+        type: 3}
+      propertyPath: jumpScarePoint
+      value: 
+      objectReference: {fileID: 832890292128292940}
     - target: {fileID: 4301898810827119558, guid: 18d158dc29f2d4c808042402413fa9cb,
         type: 3}
       propertyPath: investigateRange
@@ -6619,6 +6687,16 @@ PrefabInstance:
       propertyPath: scarecrowAnimator
       value: 
       objectReference: {fileID: 2020387915}
+    - target: {fileID: 5441211954382991697, guid: 18d158dc29f2d4c808042402413fa9cb,
+        type: 3}
+      propertyPath: m_AgentTypeID
+      value: -334000983
+      objectReference: {fileID: 0}
+    - target: {fileID: 5441211954382991697, guid: 18d158dc29f2d4c808042402413fa9cb,
+        type: 3}
+      propertyPath: m_WalkableMask
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 9087724948878537458, guid: 18d158dc29f2d4c808042402413fa9cb,
         type: 3}
       propertyPath: m_Name
@@ -7506,6 +7584,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ZoneBorder
+      objectReference: {fileID: 0}
+    - target: {fileID: 2221476700149436360, guid: 66bbd7b6af2604b8ca71a3ce9b28286b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2829819187543766002, guid: 66bbd7b6af2604b8ca71a3ce9b28286b,
         type: 3}
