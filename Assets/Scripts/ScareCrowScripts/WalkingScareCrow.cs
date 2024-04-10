@@ -281,6 +281,7 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
         scareCrowNavAgent.enabled = false;
         transform.position = jumpScarePoint.position;
         transform.rotation = jumpScarePoint.rotation;
+        
         scarecrowAnimator.SetTrigger("JumpScare");
 
         Invoke(nameof(Killing), animTime);
