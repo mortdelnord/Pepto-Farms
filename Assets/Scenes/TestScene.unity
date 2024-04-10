@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeScarecrow: {fileID: 0}
-  firstScarecrow: {fileID: 1068534729}
+  firstScarecrow: {fileID: 1704704833}
   ExitGate: {fileID: 1595572766}
   stampsCollected:
   - {fileID: 2109030925}
@@ -366,6 +366,8 @@ GameObject:
   - component: {fileID: 129258709}
   - component: {fileID: 129258712}
   - component: {fileID: 129258711}
+  - component: {fileID: 129258714}
+  - component: {fileID: 129258713}
   m_Layer: 0
   m_Name: ScareCrowArea
   m_TagString: Untagged
@@ -380,7 +382,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129258708}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -436,8 +438,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AgentTypeID: -334000983
   m_StartPoint: {x: 1.7899055, y: 0, z: 0}
-  m_EndPoint: {x: -1.5471821, y: 0, z: 0}
-  m_Width: 15.271158
+  m_EndPoint: {x: 0.8771038, y: 5.7435303, z: 0}
+  m_Width: 15
   m_CostModifier: -1
   m_Bidirectional: 1
   m_AutoUpdatePosition: 0
@@ -449,7 +451,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129258708}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -473,6 +475,46 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 278f5a5aa658149fea72818878323021, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &129258713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129258708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -334000983
+  m_StartPoint: {x: 0.8771038, y: 5.7435303, z: 0}
+  m_EndPoint: {x: -0.3736801, y: 5.7435303, z: 0}
+  m_Width: 15
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 4
+--- !u!114 &129258714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129258708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -334000983
+  m_StartPoint: {x: -1.2785854, y: 0, z: 0}
+  m_EndPoint: {x: -0.3736801, y: 5.7435303, z: 0}
+  m_Width: 15
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 4
 --- !u!1 &146152737 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 591962386935912892, guid: d764027c96fb34e0e956ef81777dd0b1,
@@ -6705,7 +6747,7 @@ PrefabInstance:
     - target: {fileID: 9087724948878537458, guid: 18d158dc29f2d4c808042402413fa9cb,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9087724948878537458, guid: 18d158dc29f2d4c808042402413fa9cb,
         type: 3}
@@ -7346,7 +7388,7 @@ PrefabInstance:
     - target: {fileID: 9087724948878537458, guid: 18d158dc29f2d4c808042402413fa9cb,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9087724948878537458, guid: 18d158dc29f2d4c808042402413fa9cb,
         type: 3}
