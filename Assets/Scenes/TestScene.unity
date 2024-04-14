@@ -366,8 +366,6 @@ GameObject:
   - component: {fileID: 129258709}
   - component: {fileID: 129258712}
   - component: {fileID: 129258711}
-  - component: {fileID: 129258714}
-  - component: {fileID: 129258713}
   m_Layer: 0
   m_Name: ScareCrowArea
   m_TagString: Untagged
@@ -438,7 +436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AgentTypeID: -334000983
   m_StartPoint: {x: 1.7899055, y: 0, z: 0}
-  m_EndPoint: {x: 0.8771038, y: 5.7435303, z: 0}
+  m_EndPoint: {x: -1.4089508, y: 0, z: 0}
   m_Width: 15
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -475,46 +473,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 278f5a5aa658149fea72818878323021, type: 2}
   m_BuildHeightMesh: 0
---- !u!114 &129258713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129258708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: -334000983
-  m_StartPoint: {x: 0.8771038, y: 5.7435303, z: 0}
-  m_EndPoint: {x: -0.3736801, y: 5.7435303, z: 0}
-  m_Width: 15
-  m_CostModifier: -1
-  m_Bidirectional: 1
-  m_AutoUpdatePosition: 0
-  m_Area: 4
---- !u!114 &129258714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129258708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: -334000983
-  m_StartPoint: {x: -1.2785854, y: 0, z: 0}
-  m_EndPoint: {x: -0.3736801, y: 5.7435303, z: 0}
-  m_Width: 15
-  m_CostModifier: -1
-  m_Bidirectional: 1
-  m_AutoUpdatePosition: 0
-  m_Area: 4
 --- !u!1 &146152737 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 591962386935912892, guid: d764027c96fb34e0e956ef81777dd0b1,
@@ -5418,6 +5376,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2020387913}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1704704837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704704833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7358dd0d337b944e4932cf7206692662, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Method: 3
+  _Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 19.528301
+      outSlope: 19.528301
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.016666668
+    - serializedVersion: 3
+      time: 0.5
+      value: 6
+      inSlope: -0.0032531738
+      outSlope: -0.0032531738
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.8329089
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -19.960855
+      outSlope: -19.960855
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.08182526
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1722282519
 GameObject:
   m_ObjectHideFlags: 0
@@ -6762,6 +6766,10 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1855597457}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9087724948878537458, guid: 18d158dc29f2d4c808042402413fa9cb,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1704704837}
     - targetCorrespondingSourceObject: {fileID: 6655488804235765997, guid: 18d158dc29f2d4c808042402413fa9cb,
         type: 3}
       insertIndex: -1
