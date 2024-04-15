@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    [Header("Audio")]
+    AudioSource interactSource;
     [Header("Inputs")]
     public InputActionAsset playerInputs;
     private InputAction interactionInput;
@@ -38,6 +40,7 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("Interacting");
             BaseInteraction objectInteract = hit.transform.gameObject.GetComponent<BaseInteraction>();
             objectInteract.Interact(); // activate the unique interaction of the interactable
+            interactSource.Play();
         }
     }
 

@@ -8,6 +8,10 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
+    [Header("Audio")]
+    public AudioClip runClip;
+    public AudioClip walkClip;
+    public AudioSource moveSource;
     [Header ("Input Reference")]
     public InputActionAsset playerInputs;
     private InputAction movementInput;
@@ -96,6 +100,32 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         
 
         Sprint();
+        if (isSprinting)
+        {
+            if (moveSource.clip == walkClip)
+            {
+                moveSource.Pause();
+                moveSource.clip = runClip;
+            }
+            if (!moveSource.isPlaying)
+            {
+                moveSource.Play();
+
+            }
+        }else
+        {
+            if (moveSource.clip == runClip)
+            {
+                moveSource.Pause();
+                moveSource.clip = walkClip;
+            }
+            if (!moveSource.isPlaying)
+            {
+                moveSource.Play();
+
+            }
+
+        }
 
         if (crouchInput.IsInProgress())
         {

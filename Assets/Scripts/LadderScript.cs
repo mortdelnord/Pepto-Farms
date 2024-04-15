@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 
 public class LadderScript : MonoBehaviour
 {
+    [Header("Audio")]
+    public AudioSource ladderSource;
+    
+    [Header("Input")]
     public InputActionAsset playerInputs;
     
     private InputAction movementInput;
@@ -52,6 +56,13 @@ public class LadderScript : MonoBehaviour
         if (isOnLadder)
         {
             Vector2 axis = movementInput.ReadValue<Vector2>();
+            if (axis.magnitude != 0)
+            {
+                ladderSource.Play();
+            }else
+            {
+                ladderSource.Stop();
+            }
 
             isOnGround = Physics.Raycast(transform.position, Vector3.down, 1.1f, groundMask);
 

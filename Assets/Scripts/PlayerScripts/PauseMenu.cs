@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    
+    public AudioSource buttonSource;
     public InputActionAsset playerInputs;
     private InputAction pauseInput;
     public GameObject pauseMenu;
@@ -102,5 +102,7 @@ public class PauseMenu : MonoBehaviour
         DataPersistenceManager.instance.SaveGame();
         Application.Quit();
     }
+
+    
     
 }

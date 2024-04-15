@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour, IDataPersistence
 {
-    
+    public AudioSource gateSource;
     public GameObject activeScarecrow;
     public GameObject firstScarecrow;
     public GameObject ExitGate;
@@ -95,9 +95,11 @@ public class GameManager : MonoBehaviour, IDataPersistence
     {
 
         ExitGate.SetActive(false);
+        gateSource.Play();
     }
     private void CloseGate()
     {
+        gateSource.Play();
         ExitGate.SetActive(true);
     }
 

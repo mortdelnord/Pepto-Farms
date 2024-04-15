@@ -12,6 +12,11 @@ public class Flashlight : MonoBehaviour
     public InputActionAsset playerInputs;
     private InputAction flashlightInput;
 
+    public Animator flashlightAnimator;
+    public float animTime;
+    private float timer = 0f;
+    private bool isAnimating = false;
+
     private void Start()
     {
         playerInputs.FindActionMap("Player").Enable();
@@ -22,13 +27,32 @@ public class Flashlight : MonoBehaviour
         if (flashlightInput.WasPerformedThisFrame())
         {
             isOn = !isOn;
-            if (isOn)
+            timer = 0f;
+            ActivateFlashlight();
+        }
+        if (isAnimating && !isOn)
+        {
+            timer += Time.deltaTime;
+            if (timer >= animTime)
             {
-                flashlight.SetActive(true);
-            }else
-            {
-                flashlight.SetActive(false);
+                timer = 0f;
+                isAnimating = false;
             }
+        }
+    }
+
+    private void ActivateFlashlight()
+    {
+        if (isOn)
+        {
+            timer = 0f;
+            flashlightAnimator.SetBool("IsOn", isOn);
+
+        }else
+        {
+            timer = 0f;
+            flashlightAnimator.SetBool("IsOn", isOn);
+            isAnimating = false;
         }
     }
 
