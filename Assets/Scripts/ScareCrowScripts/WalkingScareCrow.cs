@@ -284,7 +284,7 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
         
         scarecrowAnimator.SetTrigger("JumpScare");
 
-        Invoke(nameof(Killing), animTime);
+        //Invoke(nameof(Killing), animTime);
     }
 
 
@@ -304,7 +304,7 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
         Debug.Log(data.walkScareScrowPos + "and " + transform.position);
     }
 
-    private void Killing()
+    public void Killing()
     {
         Debug.Log("Killing Player");
         scareCrowNavAgent.enabled = true;

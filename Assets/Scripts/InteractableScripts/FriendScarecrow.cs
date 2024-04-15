@@ -5,6 +5,12 @@ using UnityEngine.Video;
 
 public class FriendScarecrow : BaseInteraction, IDataPersistence
 {
+    [Header("Sound Effects")]
+    public AudioClip interactingClip;
+    public AudioClip ambientClip;
+
+    private SoundManager soundManager;
+
 
     [SerializeField] private string id;
 
@@ -26,6 +32,8 @@ public class FriendScarecrow : BaseInteraction, IDataPersistence
 
     private void Awake()
     {
+        soundManager = gameObject.GetComponent<SoundManager>();
+        soundManager.LoopSounc(ambientClip);
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         UpdateCanvas();
         
@@ -40,13 +48,18 @@ public class FriendScarecrow : BaseInteraction, IDataPersistence
             isCollected = true;
             Debug.Log("Animating");
             scareCrowAnimator.SetTrigger("Interact");
-            Invoke(nameof(UpdateCanvas), animationTime);
+            //Invoke(nameof(UpdateCanvas), animationTime);
 
         }else
         {
             Debug.Log("has been collected");
-            isCollected = false;
+            //isCollected = false;
         }
+    }
+    public void doneInteractingEvent()
+    {
+        UpdateCanvas();
+        soundManager.PlaySound(interactingClip);
     }
 
 

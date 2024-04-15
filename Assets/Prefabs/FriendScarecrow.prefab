@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 101474419150154818}
   - component: {fileID: 2783220414980492393}
   - component: {fileID: 7185899859137579024}
+  - component: {fileID: 4975075872018985366}
   m_Layer: 7
   m_Name: FriendScarecrow
   m_TagString: Untagged
@@ -53,7 +54,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
+  m_Size: {x: 1.5, y: 2, z: 1.5}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &7185899859137579024
 MonoBehaviour:
@@ -68,10 +69,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerObject: {fileID: 0}
-  id: 
+  interactingClip: {fileID: 0}
+  ambientClip: {fileID: 0}
+  id: 3e51b3f4-4736-48a0-95fc-d75e6ee29533
   scareCrowAnimator: {fileID: 2114209044883626004}
-  animationTime: 0
+  animationTime: 1
   ScavengerHuntStamp: {fileID: 0}
+--- !u!114 &4975075872018985366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065820321773456510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b62312b50ae342fabacb9e4d14f2192, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loopSource: {fileID: 0}
 --- !u!1 &3912370207639806237
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,6 +101,7 @@ GameObject:
   - component: {fileID: 3964732688923364711}
   - component: {fileID: 3230292246850118914}
   - component: {fileID: 2114209044883626004}
+  - component: {fileID: 7717885664963759959}
   m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
@@ -201,3 +218,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7717885664963759959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3912370207639806237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff85c1555090d4807be06b944ba00430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friendScarecrow: {fileID: 7185899859137579024}
