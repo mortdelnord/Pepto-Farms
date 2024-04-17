@@ -87,9 +87,9 @@ ModelImporter:
       curves: []
       events:
       - time: 0
-        functionName: AlertNoise
+        functionName: CrowNoise
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: e0c1454df2bc94e9b85a0aaab08438d0,
+        objectReferenceParameter: {fileID: 11500000, guid: 96c5945a85df045fcb3612f9c720482c,
           type: 3}
         floatParameter: 0
         intParameter: 0

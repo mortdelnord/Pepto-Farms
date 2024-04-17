@@ -9,14 +9,14 @@ public class CrowScript : MonoBehaviour
     private GameManager gameManager;
     private PlayerMovement playerMovement;
     public Transform alertPoint;
-    public AudioClip crowClip;
-    private AudioSource source;
+    
+    public Animator crowAnimator;
 
     private void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        source = gameObject.GetComponent<AudioSource>();
+        
     }
     private void OnTriggerEnter(Collider collider)
     {
@@ -24,7 +24,7 @@ public class CrowScript : MonoBehaviour
         {
 
             inZone = true;
-            source.PlayOneShot(crowClip);
+            
             //alertPoint.position = collider.transform.position;
 
         }
@@ -45,6 +45,8 @@ public class CrowScript : MonoBehaviour
         {
             if (!playerMovement.isCrouching && playerMovement.isMoving)
             {
+                
+                crowAnimator.SetTrigger("Alert");
                 alertPoint.position = playerMovement.transform.position;
                 gameManager.ScareCrowAlert(alertPoint);
                 inZone = false;
