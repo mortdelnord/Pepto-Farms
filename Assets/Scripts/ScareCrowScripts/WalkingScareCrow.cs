@@ -76,11 +76,22 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
         //Debug.Log(state);
         if (scareCrowNavAgent.velocity == Vector3.zero)
         {
-            //Debug.Log("Is Moving");
-            scarecrowAnimator.SetBool("IsWalking", false);
+            //Debug.Log("Velocity 0");
+            scarecrowAnimator.SetBool("IsMoving", false);
         }else
         {
-            scarecrowAnimator.SetBool("IsWalking", true);
+            scarecrowAnimator.SetBool("IsMoving", true);
+            //Debug.Log(state);
+            if(state == State.Hunt)
+            {
+                //Debug.Log("state is hunt");
+                scarecrowAnimator.SetBool("IsHunting", true);
+            }else
+            {
+                //Debug.Log("Huh");
+                scarecrowAnimator.SetBool("IsHunting", false);
+            }
+            
         }
 
         Vector3 scareForward = transform.forward;
@@ -141,8 +152,13 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
     }
     private void Wander()
     {
+        
         if (scareCrowNavAgent.enabled == true)
         {
+            if (scareCrowNavAgent.speed != wanderSpeeds)
+            {
+                scareCrowNavAgent.speed = wanderSpeeds;
+            }
             if (!scareCrowNavAgent.hasPath) // if the scarecrow doesn't have a path 
             {
                 Vector3 point;
@@ -173,6 +189,10 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
     {
         if (scareCrowNavAgent.enabled == true)
         {
+            if (scareCrowNavAgent.speed != huntSpeed)
+            {
+                scareCrowNavAgent.speed = huntSpeed;
+            }
             NavMeshPath path = new NavMeshPath();
             if (scareCrowNavAgent.CalculatePath(player.transform.position, path)) // make a path toward player 
             {            
@@ -196,6 +216,10 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
     {
         if (scareCrowNavAgent.enabled == true)
         {
+            if (scareCrowNavAgent.speed != InvesigateSpeed)
+            {
+                scareCrowNavAgent.speed = InvesigateSpeed;
+            }
             if (!scareCrowNavAgent.hasPath && investigateChecks < invesigateCheckMax) // if scarescrow doesn't have a path and hasn't investigated its max amount of points
             {
                 //Debug.Log("no path so finding point");

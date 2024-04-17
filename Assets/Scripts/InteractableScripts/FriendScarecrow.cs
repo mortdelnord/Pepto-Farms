@@ -47,7 +47,7 @@ public class FriendScarecrow : BaseInteraction, IDataPersistence
         {
             isCollected = true;
             Debug.Log("Animating");
-            scareCrowAnimator.SetTrigger("Interact");
+            scareCrowAnimator.SetTrigger("Stamp");
             //Invoke(nameof(UpdateCanvas), animationTime);
 
         }else
@@ -68,7 +68,7 @@ public class FriendScarecrow : BaseInteraction, IDataPersistence
     {
         if (isCollected)
         {
-            Debug.Log("Done Animating");
+            //Debug.Log("Done Animating");
             ScavengerHuntStamp.SetActive(true);
             ScavengerHuntStamp.transform.rotation = RandomRotation();
             gameManager.UpdateGameState();

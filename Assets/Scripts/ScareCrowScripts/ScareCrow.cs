@@ -43,6 +43,10 @@ public abstract class ScareCrow : MonoBehaviour
     public float WanderRange;
     public GameManager gameManager;
 
+    public float huntSpeed;
+    public float wanderSpeeds;
+    public float InvesigateSpeed;
+
    public enum State
    {
       Idle,
