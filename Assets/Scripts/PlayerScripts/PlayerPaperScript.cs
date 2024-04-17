@@ -19,6 +19,9 @@ public class PlayerPaperScript : MonoBehaviour
     public float animTime;
     private float timer = 0f;
     private bool isAnimating = false;
+    [Header("Notes")]
+    public GameObject noteNotif;
+    public GameObject noteUI;
 
     private void Start()
     {
@@ -32,7 +35,7 @@ public class PlayerPaperScript : MonoBehaviour
         {
             isLookingAtPaper = !isLookingAtPaper;
             timer = 0f;
-            ActivateHand();
+            ActivateHand(isLookingAtPaper);
         }
         if (isAnimating && !isLookingAtPaper)
         {
@@ -41,23 +44,29 @@ public class PlayerPaperScript : MonoBehaviour
             {
                 timer = 0f;
                 isAnimating = false;
+                if (noteUI.activeSelf || noteNotif.activeSelf)
+                {
+                    noteNotif.SetActive(false);
+                    noteUI.SetActive(false);
+                }
                 //handObject.SetActive(false);
             }
         }
 
     }
 
-    private void ActivateHand()
+    public void ActivateHand(bool isLooking)
     {
-        if (isLookingAtPaper)
+        isLookingAtPaper = isLooking;
+        if (isLooking)
         {
             timer = 0f;
             //handObject.SetActive(true);
-            handAnimator.SetBool("IsLookingAtPaper", isLookingAtPaper);
+            handAnimator.SetBool("IsLookingAtPaper", isLooking);
         }else
         {
             timer = 0f;
-            handAnimator.SetBool("IsLookingAtPaper", isLookingAtPaper);
+            handAnimator.SetBool("IsLookingAtPaper", isLooking);
             isAnimating = true;
         }
     }
