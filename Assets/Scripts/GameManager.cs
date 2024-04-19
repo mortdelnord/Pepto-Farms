@@ -1,12 +1,15 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour, IDataPersistence
 {
+    public GameObject randomSoundObject;
+    private float soundTimer = 0f;
+    public float soundTimerMax = 2f;
+    public Transform playerPos;
     public AudioSource gateSource;
     public GameObject activeScarecrow;
     public GameObject firstScarecrow;
@@ -35,7 +38,18 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
-
+        if (state != State.GameStart)
+        {
+            Debug.Log(soundTimer);
+            soundTimer += Time.deltaTime;
+            if (soundTimer >= soundTimerMax)
+            {
+                Debug.Log("timer ended");
+                soundTimerMax = UnityEngine.Random.Range(2f, 100f);
+                soundTimer = 0f;
+                Instantiate(randomSoundObject, RandomPointNearPlayer(), randomSoundObject.transform.rotation);
+            }
+        }
     }
 
     private void Start()
@@ -183,7 +197,11 @@ public class GameManager : MonoBehaviour, IDataPersistence
         //data.scareScrowPos = this.activeScarecrow.transform.position;
     }
 
-
+    private Vector3 RandomPointNearPlayer()
+    {
+        Vector3 newPoint = playerPos.position + UnityEngine.Random.insideUnitSphere * 1;
+        return newPoint;
+    }
 
 
 }

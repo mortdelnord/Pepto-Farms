@@ -5,8 +5,8 @@ using UnityEngine;
 public class WallAlert : MonoBehaviour
 {
     private GameManager gameManager;
-    AudioClip cornSlip;
-    AudioSource source;
+    public AudioClip cornSlip;
+    public AudioSource source;
     private PlayerMovement playerMovement;
 
     private void Start()

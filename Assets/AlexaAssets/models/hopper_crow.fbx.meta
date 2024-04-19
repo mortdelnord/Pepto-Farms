@@ -123,7 +123,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 1
+      - time: 0
         functionName: RunEvent
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 715d82a2e43d340698a236b6f1116f38,
