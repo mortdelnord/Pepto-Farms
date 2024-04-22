@@ -31,13 +31,13 @@ public class GameData
     public GameData()
     {
         this.deathCount = 0;
-        playerPosition = Vector3.zero;
+        playerPosition = new Vector3(-26f, -2f, 141f);
         coinsCollected = new SerializableDictionary<string, bool>();
         activeScareCrow = null;
         activeScareCrowId = null;
-        walkScareScrowPos = new Vector3(34.59f, 0f, 7.09f);
-        jumpScareCrowPos = Vector3.zero;
-        crawlScareCrowPos = Vector3.zero;
+        walkScareScrowPos = new Vector3(52f, -1.98f, 69f);
+        jumpScareCrowPos = new Vector3(153f, -2f, 35f);;
+        crawlScareCrowPos = new Vector3(-109f, -2f, 7f);;
         gameState = 4;
         walkscareCrowState = 0;
         jumpScareCrowState = 0;
