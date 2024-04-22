@@ -255,7 +255,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129258708}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_EndPoint: {x: -1.4089508, y: 0, z: 0}
   m_Width: 15
   m_CostModifier: -1
-  m_Bidirectional: 1
+  m_Bidirectional: 0
   m_AutoUpdatePosition: 0
   m_Area: 4
 --- !u!114 &129258712
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129258708}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -1820,7 +1820,7 @@ PrefabInstance:
     - target: {fileID: 2221476700149436360, guid: 66bbd7b6af2604b8ca71a3ce9b28286b,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2829819187543766002, guid: 66bbd7b6af2604b8ca71a3ce9b28286b,
         type: 3}
@@ -4075,6 +4075,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScareCrow
       objectReference: {fileID: 0}
+    - target: {fileID: 9087724948878537458, guid: 18d158dc29f2d4c808042402413fa9cb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4152,7 +4157,7 @@ PrefabInstance:
         type: 3}
       propertyPath: firstScarecrow
       value: 
-      objectReference: {fileID: 1068534729}
+      objectReference: {fileID: 9087724949278334651}
     - target: {fileID: 4841052649170999852, guid: 8e333408294fe451e8d4bfedb0290604,
         type: 3}
       propertyPath: stampsCollected.Array.data[0]
@@ -4522,7 +4527,7 @@ PrefabInstance:
     - target: {fileID: 2221476700149436360, guid: 66bbd7b6af2604b8ca71a3ce9b28286b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2829819187543766002, guid: 66bbd7b6af2604b8ca71a3ce9b28286b,
         type: 3}
@@ -4655,7 +4660,7 @@ PrefabInstance:
     - target: {fileID: 5348743209026691433, guid: 74b698d280651413e81c925698a09ce8,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

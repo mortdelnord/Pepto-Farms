@@ -1,11 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour, IDataPersistence
 {
+    private UnityEngine.Object[] navlinkObjects;
+    [ContextMenu ("Navmesh Link Components")]
+    private void Generate()
+    {
+        navlinkObjects = FindObjectsOfType(typeof(NavMeshLinkResizer));
+        foreach(var obj in navlinkObjects)
+        {
+            obj.GetComponent<NavMeshLinkResizer>().GenerateSize();
+        }
+    }
     public GameObject randomSoundObject;
     private float soundTimer = 0f;
     public float soundTimerMax = 2f;

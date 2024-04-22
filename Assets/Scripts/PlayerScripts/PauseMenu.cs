@@ -28,6 +28,10 @@ public class PauseMenu : MonoBehaviour
         playerInputs.FindActionMap("Player").Enable();
         pauseInput = playerInputs.FindActionMap("Player").FindAction("Pause");
         isPaused = false;
+        saveButton.interactable = false;
+        continueButton.interactable = false;
+        mainMenuButton.interactable = false;
+        exitButton.interactable = false;
         PauseGame();
     }
 

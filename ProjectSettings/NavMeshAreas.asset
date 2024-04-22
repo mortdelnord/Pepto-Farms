@@ -10,7 +10,7 @@ NavMeshProjectSettings:
   - name: Not Walkable
     cost: 1
   - name: Jump
-    cost: 2
+    cost: 1
   - name: ScareCrowWalk
     cost: 1
   - name: ScareCrowJump
@@ -113,7 +113,7 @@ NavMeshProjectSettings:
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
-    ledgeDropHeight: 0
+    ledgeDropHeight: 10.51
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
