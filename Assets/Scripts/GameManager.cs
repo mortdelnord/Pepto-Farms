@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
+        Generate();
         ActivateScareCrow();
     }
 

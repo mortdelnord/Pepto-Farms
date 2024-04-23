@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -120,6 +121,7 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
 
         if (rightDot > vision && NavMesh.SamplePosition(player.transform.position, out NavMeshHit navHit, 0.1f, scareCrowNavAgent.areaMask) && CanSee) // if the player is within the field of view of the scarecrow and is on the scarecrows navmesh and can be seen 
         {
+            //Gizmos.color = Color.red;
             //Debug.Log("Can see and is hunting");
             if (losePlayer != null) StopCoroutine(losePlayer); losePlayer = null; // stop coroutines of other states and sets those to null
 
@@ -128,7 +130,7 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
             state = State.Hunt; // go to state of hunting
         }else if (rightDot < vision || !NavMesh.SamplePosition(player.transform.position, out NavMeshHit playerHit, 0.1f, scareCrowNavAgent.areaMask) || !CanSee) // if the player is not a valid target in an way 
         {
-            
+            //Gizmos.color = Color.blue;
             if (state == State.Hunt) // if the state is currently hunting
             {
                 //Debug.Log("state is hunt");
@@ -335,4 +337,14 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
         gameManager.KillPlayer();
 
     }
+
+    // private void OnDrawGizmos()
+    // {
+    //     if (player.transform.position != null)
+    //     {
+    //         Gizmos.DrawLine(transform.position, transform.forward);
+    //         Gizmos.DrawLine(transform.position, player.transform.position);
+
+    //     }
+    // }
 }
