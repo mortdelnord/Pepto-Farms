@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1526667042915273034}
   - component: {fileID: 4913431720227234044}
   - component: {fileID: 2167354436988822692}
+  - component: {fileID: 4787496592615713147}
   m_Layer: 0
   m_Name: CornMazeBlock
   m_TagString: Untagged
@@ -110,6 +111,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2.5, z: 1}
   m_Center: {x: 0, y: 1.25, z: 0}
+--- !u!114 &4787496592615713147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7530309541632095171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 1, y: 2.5, z: 1}
+  m_Center: {x: 0, y: 1.25, z: 0}
+  m_Area: 1
+  m_AffectedAgents: a98c17ec
 --- !u!1001 &3192487747011307367
 PrefabInstance:
   m_ObjectHideFlags: 0
