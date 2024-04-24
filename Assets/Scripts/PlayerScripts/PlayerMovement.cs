@@ -12,6 +12,10 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
     public AudioClip runClip;
     public AudioClip walkClip;
     public AudioSource moveSource;
+
+    private bool canSound = true;
+    public float walkSoundSpeed;
+    public float runSoundSpeed;
     [Header ("Input Reference")]
     public InputActionAsset playerInputs;
     private InputAction movementInput;
@@ -102,26 +106,41 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         Sprint();
         if (isSprinting)
         {
-            if (moveSource.clip == walkClip)
+            if (moveSource.clip == walkClip && isMoving)
             {
-                moveSource.Pause();
+                //Debug.Log("Move vlip to runClip");
+                moveSource.Stop();
                 moveSource.clip = runClip;
             }
-            if (!moveSource.isPlaying)
+            if (!moveSource.isPlaying && isMoving)
             {
-                moveSource.Play();
+                //Debug.Log("PlayingClip");
+                if (canSound)
+                {
+                    moveSource.Play();
+                    canSound = false;
+                    Invoke(nameof(ResetCanSound), runSoundSpeed);
+                }
 
             }
         }else
         {
-            if (moveSource.clip == runClip)
+            if (moveSource.clip == runClip && isMoving)
             {
-                moveSource.Pause();
+                //Debug.Log("Move to walk clip");
+                moveSource.Stop();
                 moveSource.clip = walkClip;
             }
-            if (!moveSource.isPlaying)
+            if (!moveSource.isPlaying && isMoving)
             {
-                moveSource.Play();
+                //Debug.Log("PlayerClip");
+                if (canSound)
+                {
+                    moveSource.Play();
+                    canSound = false;
+                    Invoke(nameof(ResetCanSound), walkSoundSpeed);
+
+                }
 
             }
 
@@ -229,6 +248,11 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             speed = walkSpeed;          
         }
         
+    }
+
+    private void ResetCanSound()
+    {
+        canSound = true;
     }
    
     private IEnumerator RechargeStamina()

@@ -23,6 +23,7 @@ public class GameData
     public int gameState;
 
     public SerializableDictionary<string, bool> coinsCollected;
+   
 
 
 
