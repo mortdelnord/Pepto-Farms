@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.011815087, g: 0.00835577, b: 0.014374449, a: 1}
+  m_IndirectSpecularColor: {r: 0.011793616, g: 0.008351605, b: 0.014411934, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15163,6 +15163,21 @@ PrefabInstance:
       propertyPath: firstScarecrow
       value: 
       objectReference: {fileID: 1000920010}
+    - target: {fileID: 4841052649170999852, guid: 8e333408294fe451e8d4bfedb0290604,
+        type: 3}
+      propertyPath: stampsCollected.Array.data[0]
+      value: 
+      objectReference: {fileID: 1855363189}
+    - target: {fileID: 4841052649170999852, guid: 8e333408294fe451e8d4bfedb0290604,
+        type: 3}
+      propertyPath: stampsCollected.Array.data[1]
+      value: 
+      objectReference: {fileID: 196630143}
+    - target: {fileID: 4841052649170999852, guid: 8e333408294fe451e8d4bfedb0290604,
+        type: 3}
+      propertyPath: stampsCollected.Array.data[2]
+      value: 
+      objectReference: {fileID: 1722873721}
     - target: {fileID: 7414760811663116764, guid: 8e333408294fe451e8d4bfedb0290604,
         type: 3}
       propertyPath: m_Name
