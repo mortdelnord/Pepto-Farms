@@ -65,6 +65,10 @@ public abstract class ScareCrow : MonoBehaviour
     gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
    }
 
+   public abstract void KillPlayer();
+
+   public abstract void Killing();
+
 
 
 }

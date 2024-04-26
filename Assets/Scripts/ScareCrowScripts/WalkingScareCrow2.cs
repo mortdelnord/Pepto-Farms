@@ -300,7 +300,7 @@ public class WalkingScareCrow2 : ScareCrow, IDataPersistence
         return false;
     }
 
-    private void KillPlayer()
+    public override void KillPlayer()
     {
         state = State.Idle;
         gameManager.UpdateDeathCount();
@@ -330,7 +330,7 @@ public class WalkingScareCrow2 : ScareCrow, IDataPersistence
         Debug.Log(data.walkScareScrowPos + "and " + transform.position);
     }
 
-    public void Killing()
+    public override void Killing()
     {
         Debug.Log("Killing Player");
         scareCrowNavAgent.enabled = true;

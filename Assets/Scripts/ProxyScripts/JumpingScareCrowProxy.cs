@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JumpingScareCrowProxy : MonoBehaviour
 {
-    public WalkingScareCrow scareCrow;
+    public ScareCrow scareCrow;
     public AudioSource audioSource;
     public AudioClip walkClip;
     public AudioClip runClip;
