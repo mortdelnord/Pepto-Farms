@@ -36,6 +36,7 @@ public class WalkingScareCrow2 : ScareCrow, IDataPersistence
     public Animator scarecrowAnimator;
     public Transform jumpScarePoint;
     public float animTime;
+    public Collider deathCollider;
     
 
     //public Vector3 lastPlayerPos;
@@ -191,6 +192,7 @@ public class WalkingScareCrow2 : ScareCrow, IDataPersistence
     {
         if (scareCrowNavAgent.enabled == true)
         {
+            deathCollider.enabled = true;
             if (scareCrowNavAgent.speed != huntSpeed)
             {
                 scareCrowNavAgent.speed = huntSpeed;
@@ -264,6 +266,7 @@ public class WalkingScareCrow2 : ScareCrow, IDataPersistence
 
     private IEnumerator MoveToInvestigate()
     {
+        deathCollider.enabled = false;
         losePlayer = null;
         //Debug.Log("coroutine movetoinvestigate started");
         yield return new WaitForSeconds(huntTimerMax); // wait a little bit before investigating just in case screcrow and catch up 
@@ -274,6 +277,7 @@ public class WalkingScareCrow2 : ScareCrow, IDataPersistence
     }
     private IEnumerator MoveToWander()
     {
+        deathCollider.enabled = false;
         goToWander = null;
         //Debug.Log("Move to wander started");
         yield return new WaitForSeconds(investigateTimerMax); // you know the gist by now
@@ -316,28 +320,36 @@ public class WalkingScareCrow2 : ScareCrow, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.transform.position = data.walkScareScrowPos;
-        state = (State)data.walkscareCrowState;
+        this.transform.position = data.jumpScareCrowPos;
+        state = (State)data.jumpScareCrowState;
         lastPlayerPos = data.playerPosition;
-        Debug.Log(transform.position + "and " + data.walkScareScrowPos);
+        //Debug.Log(transform.position + "and " + data.walkScareScrowPos);
 
 
     }
     public void SaveData(GameData data)
     {
-        data.walkscareCrowState = (int)state;
-        data.walkScareScrowPos = this.transform.position;
-        Debug.Log(data.walkScareScrowPos + "and " + transform.position);
+        data.jumpScareCrowState = (int)state;
+        data.jumpScareCrowPos = this.transform.position;
+        //Debug.Log(data.walkScareScrowPos + "and " + transform.position);
     }
 
     public override void Killing()
     {
-        Debug.Log("Killing Player");
+        //Debug.Log("Killing Player");
         scareCrowNavAgent.enabled = true;
         gameManager.KillPlayer();
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            deathCollider.enabled = false;
+            KillPlayer();
+        }
+    }
     // private void OnDrawGizmos()
     // {
     //     if (player.transform.position != null)

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2668837481403665344
+--- !u!1 &5862997539775921499
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2090034858648517552}
-  - component: {fileID: 892187148650277755}
-  - component: {fileID: 233331859545980411}
+  - component: {fileID: 7522022218565845118}
+  - component: {fileID: 558373885939344478}
+  - component: {fileID: 4028876871638856152}
   m_Layer: 0
-  m_Name: RandomNoise
+  m_Name: AnimalNoisePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2090034858648517552
+--- !u!4 &7522022218565845118
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2668837481403665344}
+  m_GameObject: {fileID: 5862997539775921499}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,48 +33,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &892187148650277755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2668837481403665344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c91cdfa63dad74fa7be9a81a481f26eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundSlips:
-  - {fileID: 8300000, guid: e7cf4c19f9fe6435293049d18d7bf75d, type: 3}
-  - {fileID: 8300000, guid: d46551c342b3e4243834f3e3e2d0a676, type: 3}
-  - {fileID: 8300000, guid: 5680b6cbe281142b0a98b34cb9d8b40a, type: 3}
-  - {fileID: 8300000, guid: add48264523344c73841e8e69dd3cf21, type: 3}
-  - {fileID: 8300000, guid: a26c72cea33df4ce68c36afd37207374, type: 3}
-  - {fileID: 8300000, guid: 619f82de62acc436f893750a1eee56fd, type: 3}
-  - {fileID: 8300000, guid: 63c5a87877e694a79bacef725fa49298, type: 3}
-  - {fileID: 8300000, guid: 14cfa3b6d17424a7d8e1be836fff13b8, type: 3}
-  - {fileID: 8300000, guid: bbfcfc66ec4d341f1b592e53a5aad3f2, type: 3}
-  - {fileID: 8300000, guid: 572132014f3094f0aae89436d3369777, type: 3}
-  - {fileID: 8300000, guid: 246e4c56b51994402a88d991a9b72c82, type: 3}
-  - {fileID: 8300000, guid: 4b1502b7d26034e47ba7943c2ed72cc2, type: 3}
-  - {fileID: 8300000, guid: 773ed28b96a624f3d86024a1a1dc3036, type: 3}
-  - {fileID: 8300000, guid: 620958535772f4af49494700c2e19d8e, type: 3}
-  - {fileID: 8300000, guid: 52760f41396564a05b4da586067b991d, type: 3}
-  - {fileID: 8300000, guid: 0362cef2c309c574088adc2ef093b78f, type: 3}
-  - {fileID: 8300000, guid: 2c88f9d3f1e46b34e97ed56d11d72ecf, type: 3}
-  source: {fileID: 233331859545980411}
---- !u!82 &233331859545980411
+--- !u!82 &558373885939344478
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2668837481403665344}
+  m_GameObject: {fileID: 5862997539775921499}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: e7cf4c19f9fe6435293049d18d7bf75d, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -85,7 +54,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 5
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -160,3 +129,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4028876871638856152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5862997539775921499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b862b8c91a7e47ebb7b12844a9c18c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ambientSource: {fileID: 558373885939344478}
+  audioClips: []
+  timeBetweenNoiseMin: 1.5
+  timeBetweenNoiseMax: 60

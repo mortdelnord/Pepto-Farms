@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 265661092522209821}
   m_Father: {fileID: 932891706063999640}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 22.697403, y: -7.5922337, z: 12.333435}
 --- !u!1 &508376908428196383
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +62,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 932891706063999640}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 54.846344, y: 0.046499237, z: 178.97708}
 --- !u!1 &1709285559602111935
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ Transform:
   m_Children:
   - {fileID: 5833548872757492300}
   m_Father: {fileID: 2582184843882558573}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 89.9802, y: 0, z: 0}
 --- !u!1 &1902258722068423917
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ Transform:
   m_Children:
   - {fileID: 723549647250008738}
   m_Father: {fileID: 888360588295717702}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98021, y: 0, z: 0}
 --- !u!1 &1927148125895855366
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +276,7 @@ Transform:
   m_Children:
   - {fileID: 2344895575665737398}
   m_Father: {fileID: 932891706063999640}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 54.16214, y: 0.045285262, z: 178.96324}
 --- !u!1 &4842074507002626398
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +455,7 @@ Transform:
   m_Children:
   - {fileID: 932891706063999640}
   m_Father: {fileID: 723549647250008738}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -55.55869, y: 0, z: 0}
 --- !u!1 &5737551521687998873
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +554,7 @@ Transform:
   m_Children:
   - {fileID: 7249118921007455275}
   m_Father: {fileID: 4561446508426188941}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.00000014635724, y: 0.000011979293, z: 1.0740452}
 --- !u!1 &6785584825729926037
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +585,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6948267384263037115}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -15.901815, y: -0.24418288, z: -16.913343}
 --- !u!1 &7088894297593613631
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,6 +599,9 @@ GameObject:
   - component: {fileID: 3787848775265740715}
   - component: {fileID: 365668241033877973}
   - component: {fileID: 5906737248104543760}
+  - component: {fileID: 1154179677093446758}
+  - component: {fileID: 1054572946821486416}
+  - component: {fileID: 5691950338021110113}
   m_Layer: 0
   m_Name: JumpingScareCrow 1
   m_TagString: ScareCrow
@@ -614,7 +617,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7088894297593613631}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.6929364, z: -0, w: 0.72099876}
+  m_LocalRotation: {x: 0, y: -0.6929364, z: 0, w: 0.72099876}
   m_LocalPosition: {x: 153.5, y: -2.018, z: 35.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -821,6 +824,144 @@ MonoBehaviour:
   scarecrowAnimator: {fileID: 7693272949654554249}
   jumpScarePoint: {fileID: 0}
   animTime: 0.3
+  deathCollider: {fileID: 5691950338021110113}
+--- !u!114 &1154179677093446758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7088894297593613631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b862b8c91a7e47ebb7b12844a9c18c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ambientSource: {fileID: 1054572946821486416}
+  audioClips:
+  - {fileID: 8300000, guid: 0362cef2c309c574088adc2ef093b78f, type: 3}
+  - {fileID: 8300000, guid: 2c88f9d3f1e46b34e97ed56d11d72ecf, type: 3}
+  timeBetweenNoiseMin: 1.5
+  timeBetweenNoiseMax: 60
+--- !u!82 &1054572946821486416
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7088894297593613631}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!136 &5691950338021110113
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7088894297593613631}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 1.57
+  m_Height: 4.47
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.81, z: 0}
 --- !u!1 &8252565385997925609
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,8 +1123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 715d82a2e43d340698a236b6f1116f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scareCrow: {fileID: 0}
+  scareCrow: {fileID: 5906737248104543760}
   audioSource: {fileID: 365668241033877973}
   walkClip: {fileID: 8300000, guid: a26c72cea33df4ce68c36afd37207374, type: 3}
   runClip: {fileID: 8300000, guid: add48264523344c73841e8e69dd3cf21, type: 3}
-  jumpScareClip: {fileID: 0}
+  jumpScareClip: {fileID: 8300000, guid: 4ecf5691da83d4043a14b878326ccbf0, type: 3}

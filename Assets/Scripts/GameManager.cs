@@ -4,6 +4,7 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour, IDataPersistence
 {
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public GameObject activeScarecrow;
     public GameObject firstScarecrow;
     public GameObject ExitGate;
-    private string activeScareCrowId;
+    public string activeScareCrowId;
     private GameObject[] arrayofScareCrows;
 
     public List<GameObject> stampsCollected;
@@ -76,8 +77,9 @@ public class GameManager : MonoBehaviour, IDataPersistence
             stampCollectedNum = 0;
             foreach (GameObject stamp in stampsCollected)
             {
-                if (stamp.activeInHierarchy)
+                if (stamp.activeSelf)
                 {
+                    Debug.Log(stamp.activeSelf);
                     stampCollectedNum ++;
                 }
             }
@@ -85,7 +87,16 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
         }else
         {
-            state = State.GameStart;
+            
+            ScareCrowAlert(playerPos);
+            
+        }
+        if (state == State.ZeroStamp)
+        {
+            CloseGate();
+        }else if (state == State.EndGame)
+        {
+            EndGame();
         }
         GameState();
         
@@ -96,6 +107,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     {
         if (state == State.GameStart)
         {
+            //CloseGate();
             Debug.Log("Game Has Started");
         }else if (state == State.ZeroStamp)
         {
@@ -133,6 +145,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     {
         if (!isStarted)
         {
+            Debug.Log("Scare alert when game not started");
             isStarted = true;
             activeScarecrow = firstScarecrow;
             UpdateGameState();
@@ -166,6 +179,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
             {
                 scarecrow.GetComponent<ScareCrow>().enabled = true;
                 scarecrow.GetComponent<NavMeshAgent>().ResetPath();
+                scarecrow.GetComponent<ScareCrow>().state = ScareCrow.State.Wander;
             }else
             {
                 scarecrow.GetComponent<ScareCrow>().enabled = false;
@@ -216,4 +230,11 @@ public class GameManager : MonoBehaviour, IDataPersistence
     }
 
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && state == State.EndGame)
+        {
+            SceneManager.LoadSceneAsync("EndScene");
+        }
+    }
 }

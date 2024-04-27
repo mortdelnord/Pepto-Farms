@@ -25,8 +25,8 @@ public class RandomNoiseScript : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawSphere(transform.position, 5f);
-    }
+    // private void OnDrawGizmos()
+    // {
+    //     Gizmos.DrawSphere(transform.position, 5f);
+    // }
 }

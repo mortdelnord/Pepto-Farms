@@ -36,6 +36,7 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
     public Animator scarecrowAnimator;
     public Transform jumpScarePoint;
     public float animTime;
+    public Collider deathCollider;
     
 
     //public Vector3 lastPlayerPos;
@@ -191,6 +192,7 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
     {
         if (scareCrowNavAgent.enabled == true)
         {
+            deathCollider.enabled = true;
             if (scareCrowNavAgent.speed != huntSpeed)
             {
                 scareCrowNavAgent.speed = huntSpeed;
@@ -204,7 +206,7 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
             
             //Debug.Log(scareCrowNavAgent.destination);
             //Debug.Log(scareCrowNavAgent.pathStatus);
-            if (Vector3.Distance(transform.position, player.transform.position) < 0.1f) // if your close, kill the player and go idle
+            if (Vector3.Distance(transform.position, player.transform.position) < 0.5f) // if your close, kill the player and go idle
             {
                 //Debug.Log(Vector3.Distance(transform.position, player.transform.position));
                 KillPlayer();
@@ -264,6 +266,7 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
 
     private IEnumerator MoveToInvestigate()
     {
+        deathCollider.enabled = false;
         losePlayer = null;
         //Debug.Log("coroutine movetoinvestigate started");
         yield return new WaitForSeconds(huntTimerMax); // wait a little bit before investigating just in case screcrow and catch up 
@@ -274,6 +277,7 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
     }
     private IEnumerator MoveToWander()
     {
+        deathCollider.enabled = false;
         goToWander = null;
         //Debug.Log("Move to wander started");
         yield return new WaitForSeconds(investigateTimerMax); // you know the gist by now
@@ -336,6 +340,15 @@ public class WalkingScareCrow : ScareCrow, IDataPersistence
         scareCrowNavAgent.enabled = true;
         gameManager.KillPlayer();
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            deathCollider.enabled = false;
+            KillPlayer();
+        }
     }
 
     // private void OnDrawGizmos()

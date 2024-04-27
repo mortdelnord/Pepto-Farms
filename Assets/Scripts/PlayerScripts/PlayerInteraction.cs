@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerInteraction : MonoBehaviour
 {
     [Header("Audio")]
-    AudioSource interactSource;
+    public AudioSource interactSource;
     [Header("Inputs")]
     public InputActionAsset playerInputs;
     private InputAction interactionInput;

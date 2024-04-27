@@ -89,7 +89,7 @@ public class SaveSlotsMenu : Menu
 
         DataPersistenceManager.instance.SaveGame();
 
-        SceneManager.LoadSceneAsync("TestScene");
+        SceneManager.LoadSceneAsync("MainScene");
     }
 
     private void DisableMenuButtons()

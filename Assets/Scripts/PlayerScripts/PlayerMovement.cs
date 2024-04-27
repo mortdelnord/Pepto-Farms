@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
     [Header("Audio")]
+    public List<AudioClip> movementClips;
     public AudioClip runClip;
     public AudioClip walkClip;
     public AudioSource moveSource;
@@ -112,6 +113,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
                 moveSource.Stop();
                 moveSource.clip = runClip;
             }
+            
             if (!moveSource.isPlaying && isMoving)
             {
                 //Debug.Log("PlayingClip");
@@ -125,6 +127,7 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
             }
         }else
         {
+            
             if (moveSource.clip == runClip && isMoving)
             {
                 //Debug.Log("Move to walk clip");

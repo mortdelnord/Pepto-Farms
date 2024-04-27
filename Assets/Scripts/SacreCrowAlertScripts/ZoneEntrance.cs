@@ -21,9 +21,13 @@ public class ZoneEntrance : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
+            Debug.Log("player entered");
             gameManager.activeScarecrow = zoneScarecrow;
+            
             if (gameManager.isStarted)
             {
+                Debug.Log("Game has started");
+                gameManager.activeScareCrowId = zoneScarecrow.GetComponent<ScareCrow>().id;
                 gameManager.ActivateScareCrow();
             }
 

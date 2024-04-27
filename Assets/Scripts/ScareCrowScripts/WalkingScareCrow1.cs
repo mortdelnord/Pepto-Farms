@@ -36,6 +36,7 @@ public class WalkingScareCrow1 : ScareCrow, IDataPersistence
     public Animator scarecrowAnimator;
     public Transform jumpScarePoint;
     public float animTime;
+    public Collider deathCollider;
     
 
     //public Vector3 lastPlayerPos;
@@ -191,6 +192,7 @@ public class WalkingScareCrow1 : ScareCrow, IDataPersistence
     {
         if (scareCrowNavAgent.enabled == true)
         {
+            deathCollider.enabled = true;
             if (scareCrowNavAgent.speed != huntSpeed)
             {
                 scareCrowNavAgent.speed = huntSpeed;
@@ -204,7 +206,7 @@ public class WalkingScareCrow1 : ScareCrow, IDataPersistence
             
             //Debug.Log(scareCrowNavAgent.destination);
             //Debug.Log(scareCrowNavAgent.pathStatus);
-            if (Vector3.Distance(transform.position, player.transform.position) < 0.1f) // if your close, kill the player and go idle
+            if (Vector3.Distance(transform.position, player.transform.position) < 0.5f) // if your close, kill the player and go idle
             {
                 //Debug.Log(Vector3.Distance(transform.position, player.transform.position));
                 KillPlayer();
@@ -264,6 +266,7 @@ public class WalkingScareCrow1 : ScareCrow, IDataPersistence
 
     private IEnumerator MoveToInvestigate()
     {
+        deathCollider.enabled = false;
         losePlayer = null;
         //Debug.Log("coroutine movetoinvestigate started");
         yield return new WaitForSeconds(huntTimerMax); // wait a little bit before investigating just in case screcrow and catch up 
@@ -274,6 +277,7 @@ public class WalkingScareCrow1 : ScareCrow, IDataPersistence
     }
     private IEnumerator MoveToWander()
     {
+        deathCollider.enabled = false;
         goToWander = null;
         //Debug.Log("Move to wander started");
         yield return new WaitForSeconds(investigateTimerMax); // you know the gist by now
@@ -302,6 +306,7 @@ public class WalkingScareCrow1 : ScareCrow, IDataPersistence
 
     public override void KillPlayer()
     {
+        
         state = State.Idle;
         gameManager.UpdateDeathCount();
         scareCrowNavAgent.enabled = false;
@@ -336,6 +341,14 @@ public class WalkingScareCrow1 : ScareCrow, IDataPersistence
         scareCrowNavAgent.enabled = true;
         gameManager.KillPlayer();
 
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            deathCollider.enabled = false;
+            KillPlayer();
+        }
     }
 
     // private void OnDrawGizmos()
