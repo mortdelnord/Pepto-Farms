@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public AudioSource gateSource;
     public GameObject activeScarecrow;
     public GameObject firstScarecrow;
-    public GameObject ExitGate;
+    // public GameObject ExitGate;
+    public Animator fenceAnimator;
     public string activeScareCrowId;
     private GameObject[] arrayofScareCrows;
 
@@ -132,13 +133,15 @@ public class GameManager : MonoBehaviour, IDataPersistence
     private void EndGame()
     {
 
-        ExitGate.SetActive(false);
+        // ExitGate.SetActive(false);
+        fenceAnimator.SetTrigger("MoveFence");
         gateSource.Play();
     }
     private void CloseGate()
     {
+        fenceAnimator.SetTrigger("MoveFence");
         gateSource.Play();
-        ExitGate.SetActive(true);
+        // ExitGate.SetActive(true);
     }
 
     public void ScareCrowAlert(Transform crowPoint)

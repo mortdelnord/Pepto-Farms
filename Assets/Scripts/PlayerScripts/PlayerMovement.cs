@@ -107,18 +107,19 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         Sprint();
         if (isSprinting)
         {
-            if (moveSource.clip == walkClip && isMoving)
-            {
-                //Debug.Log("Move vlip to runClip");
-                moveSource.Stop();
-                moveSource.clip = runClip;
-            }
+            // if (moveSource.clip == walkClip && isMoving)
+            // {
+            //     //Debug.Log("Move vlip to runClip");
+            //     moveSource.Stop();
+            //     moveSource.clip = runClip;
+            // }
             
             if (!moveSource.isPlaying && isMoving)
             {
                 //Debug.Log("PlayingClip");
                 if (canSound)
                 {
+                    moveSource.clip = movementClips[UnityEngine.Random.Range(0, movementClips.Count - 1)];
                     moveSource.Play();
                     canSound = false;
                     Invoke(nameof(ResetCanSound), runSoundSpeed);
@@ -128,17 +129,18 @@ public class PlayerMovement : MonoBehaviour, IDataPersistence
         }else
         {
             
-            if (moveSource.clip == runClip && isMoving)
-            {
-                //Debug.Log("Move to walk clip");
-                moveSource.Stop();
-                moveSource.clip = walkClip;
-            }
+            // if (moveSource.clip == runClip && isMoving)
+            // {
+            //     //Debug.Log("Move to walk clip");
+            //     moveSource.Stop();
+            //     moveSource.clip = walkClip;
+            // }
             if (!moveSource.isPlaying && isMoving)
             {
                 //Debug.Log("PlayerClip");
                 if (canSound)
                 {
+                    moveSource.clip = movementClips[UnityEngine.Random.Range(0, movementClips.Count - 1)];
                     moveSource.Play();
                     canSound = false;
                     Invoke(nameof(ResetCanSound), walkSoundSpeed);
