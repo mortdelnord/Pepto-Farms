@@ -81,8 +81,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: b5f2483e4f5bd43ffb41ba42f1f487b1, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -299,8 +299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c5945a85df045fcb3612f9c720482c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 0}
-  crowAlertSound: {fileID: 0}
+  source: {fileID: 3156903920712273112}
+  crowAlertSound: {fileID: 8300000, guid: b5f2483e4f5bd43ffb41ba42f1f487b1, type: 3}
 --- !u!4 &8167815805244440066 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3975865605074796363, guid: 36ce68e685a3f482fa029aa7758be00a,
