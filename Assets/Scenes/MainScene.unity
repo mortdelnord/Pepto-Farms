@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.011815087, g: 0.00835577, b: 0.014374449, a: 1}
+  m_IndirectSpecularColor: {r: 0.011793616, g: 0.008351605, b: 0.014411934, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15483,6 +15483,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnimalNoisePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5862997539775921499, guid: 3dc912b12f2ac4a578ad83d5abbb866d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7522022218565845118, guid: 3dc912b12f2ac4a578ad83d5abbb866d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16517,7 +16522,7 @@ PrefabInstance:
     - target: {fileID: 7489720436768376917, guid: 7cd3af587f4a2498b9b2b58a6489caac,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8414667216808007353, guid: 7cd3af587f4a2498b9b2b58a6489caac,
         type: 3}
@@ -19560,12 +19565,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7175304197118566773, guid: 7875748c62244b444b23d62aa01ac336,
     type: 3}
   m_PrefabInstance: {fileID: 403295962}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &405954285 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1860193195004194439, guid: d67897689a70f4010b250e38f0881aab,
-    type: 3}
-  m_PrefabInstance: {fileID: 741306528}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
@@ -32539,6 +32538,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnimalNoisePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5862997539775921499, guid: 3dc912b12f2ac4a578ad83d5abbb866d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7522022218565845118, guid: 3dc912b12f2ac4a578ad83d5abbb866d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33717,12 +33721,12 @@ PrefabInstance:
     - target: {fileID: 5610329911444153919, guid: c7073a17e9ea74b9991b7962a9734329,
         type: 3}
       propertyPath: initializeDataIfNull
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5610329911444153919, guid: c7073a17e9ea74b9991b7962a9734329,
         type: 3}
       propertyPath: disableDataPersistence
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8274975161683708056, guid: c7073a17e9ea74b9991b7962a9734329,
         type: 3}
@@ -35281,6 +35285,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 890501574515370662, guid: d67897689a70f4010b250e38f0881aab,
+        type: 3}
+      propertyPath: buttonSource
+      value: 
+      objectReference: {fileID: 741306531}
     - target: {fileID: 2709599336208078606, guid: d67897689a70f4010b250e38f0881aab,
         type: 3}
       propertyPath: m_IsActive
@@ -35621,6 +35630,12 @@ MonoBehaviour:
 --- !u!1 &741306530 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2709599336208078606, guid: d67897689a70f4010b250e38f0881aab,
+    type: 3}
+  m_PrefabInstance: {fileID: 741306528}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &741306531 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1296987923363731399, guid: d67897689a70f4010b250e38f0881aab,
     type: 3}
   m_PrefabInstance: {fileID: 741306528}
   m_PrefabAsset: {fileID: 0}
@@ -61820,6 +61835,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 1d77880dac5952141a6d85ecc0ebfd2c,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 1d77880dac5952141a6d85ecc0ebfd2c,
+        type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0224efd9077dd464ebcbf0462d9cc5c2, type: 2}
@@ -67555,7 +67575,7 @@ PrefabInstance:
     - target: {fileID: 4118560775480528231, guid: 0c5e6525b13f5ee42be2cc5f34459679,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 285.83356
+      value: 286.59
       objectReference: {fileID: 0}
     - target: {fileID: 4118560775480528231, guid: 0c5e6525b13f5ee42be2cc5f34459679,
         type: 3}
@@ -67565,7 +67585,7 @@ PrefabInstance:
     - target: {fileID: 4118560775480528231, guid: 0c5e6525b13f5ee42be2cc5f34459679,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.610138
+      value: 18.04
       objectReference: {fileID: 0}
     - target: {fileID: 4118560775480528231, guid: 0c5e6525b13f5ee42be2cc5f34459679,
         type: 3}
@@ -72111,6 +72131,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AnimalNoisePrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862997539775921499, guid: 3dc912b12f2ac4a578ad83d5abbb866d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7522022218565845118, guid: 3dc912b12f2ac4a578ad83d5abbb866d,
         type: 3}
@@ -83517,7 +83542,7 @@ PrefabInstance:
         type: 3}
       propertyPath: noteNotif
       value: 
-      objectReference: {fileID: 405954285}
+      objectReference: {fileID: 2009487296}
     - target: {fileID: 3087898932010241967, guid: d764027c96fb34e0e956ef81777dd0b1,
         type: 3}
       propertyPath: handObject
@@ -91061,6 +91086,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AnimalNoisePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5862997539775921499, guid: 3dc912b12f2ac4a578ad83d5abbb866d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7522022218565845118, guid: 3dc912b12f2ac4a578ad83d5abbb866d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -94594,6 +94624,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AnimalNoisePrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 5862997539775921499, guid: 3dc912b12f2ac4a578ad83d5abbb866d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7522022218565845118, guid: 3dc912b12f2ac4a578ad83d5abbb866d,
         type: 3}

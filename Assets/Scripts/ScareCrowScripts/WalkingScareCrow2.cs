@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -311,6 +311,9 @@ public class WalkingScareCrow2 : ScareCrow, IDataPersistence
         scareCrowNavAgent.enabled = false;
         transform.position = jumpScarePoint.position;
         transform.rotation = jumpScarePoint.rotation;
+        player.GetComponent<PlayerMovement>().enabled = false;
+        GameObject virtCam = GameObject.Find("Virtual Camera");
+        virtCam.GetComponent<CinemachineVirtualCamera>().DestroyCinemachineComponent<CinemachinePOV>();
         
         scarecrowAnimator.SetTrigger("JumpScare");
 
