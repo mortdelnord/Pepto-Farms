@@ -36,8 +36,8 @@ ModelImporter:
       name: stampcrow_standing_idle
       takeName: stampcrow_standing_idle
       internalID: 5666716968547524414
-      firstFrame: 0
-      lastFrame: 79
+      firstFrame: 1
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -65,8 +65,8 @@ ModelImporter:
       name: stampcrow_waving
       takeName: stampcrow_waving
       internalID: -5255755299162399453
-      firstFrame: 0
-      lastFrame: 86
+      firstFrame: 1
+      lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -94,8 +94,8 @@ ModelImporter:
       name: stampcrow_sitting
       takeName: stampcrow_sitting
       internalID: 2266192757790172826
-      firstFrame: 0
-      lastFrame: 74
+      firstFrame: 1
+      lastFrame: 70
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -131,7 +131,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
