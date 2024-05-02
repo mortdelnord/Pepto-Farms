@@ -3428,6 +3428,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 89.99999
       objectReference: {fileID: 0}
+    - target: {fileID: 7439483826303535873, guid: 609c2914d588448bbbd05cc4e9281ca2,
+        type: 3}
+      propertyPath: friendScarecrow
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7631148714576199544, guid: 609c2914d588448bbbd05cc4e9281ca2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3555,6 +3560,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7185899859137579024, guid: 609c2914d588448bbbd05cc4e9281ca2, type: 3}
+    - {fileID: 7439483826303535873, guid: 609c2914d588448bbbd05cc4e9281ca2, type: 3}
+    - {fileID: 8395816079829634981, guid: 609c2914d588448bbbd05cc4e9281ca2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

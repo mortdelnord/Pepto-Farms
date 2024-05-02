@@ -1,6 +1,6 @@
-using System;
+
 using System.Collections.Generic;
-using System.Threading;
+
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -211,7 +211,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         state = (State)data.gameState;
         stampCollectedNum = (int)state;
         activeScarecrow = data.activeScareCrow;
-        activeScareCrowId = data.activeScareCrowId;
+        //activeScareCrowId = data.activeScareCrowId;
         ActivateScareCrow();
        // activeScarecrow.transform.position = data.scareScrowPos;
 
@@ -221,7 +221,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         data.deathCount = this.deathCount;
         data.gameState = (int)state;
         data.activeScareCrow = this.activeScarecrow;
-        data.activeScareCrowId = activeScarecrow.GetComponent<ScareCrow>().id;
+        //data.activeScareCrowId = activeScarecrow.GetComponent<ScareCrow>().id;
         
         //data.scareScrowPos = this.activeScarecrow.transform.position;
     }
